@@ -1,0 +1,43 @@
+.sectionHome{
+  margin-top:35px;
+  margin-bottom:40px;
+}
+.profilePic{
+  display: block;
+  margin:auto;
+  border-radius:50%;
+  border:1px solid black;
+  width: 75%;
+}
+.change{
+  display: inherit;
+}
+.scrollBody1, .scrollBody2{
+  display:flex;
+}
+.scrolling1{
+  margin-top:5px;
+  animation:typing 1s steps(100, end);
+  overflow: hidden;
+  white-space:nowrap;
+}
+.fadeIn{
+  animation-duration:5s;
+  animation-delay:1s;
+}
+.scrolling2{
+  animation:typing 2s 2s steps(100, end);
+  animation-fill-mode:backwards;
+  padding-right:5px;
+  overflow: hidden;
+  white-space:nowrap;
+}
+@keyframes typing{
+  from {width:0}
+  to {width:100%}
+}
+.pancakes{
+  width:210px;
+  margin-top:20px;
+  animation-delay:1.5s;
+}

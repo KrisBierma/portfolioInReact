@@ -1,0 +1,39 @@
+.navbar-brand{
+  background-color:#D81E23;
+  padding:.3125rem;
+}
+.navbar{
+  padding:0px;
+  background-color:#D81E23;
+  z-index: 100;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+#navColl{justify-content: flex-end;}
+
+a.nav-link {color:white;}
+a.nav-link:hover{
+    background-color:#9d151a;
+    color:white;
+}
+.pipe{
+    color:white;
+    display:block;
+    padding:.5rem .5rem;
+}
+.nav-pills .nav-link.active{
+    background-color:#D81E23;
+    box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.2), 2px 5px 10px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 75%;
+}
+.fal{
+    color:white;
+}
+.fal-port{color:#9d151a;}
+
+.fab, .fas{
+    padding:20px;
+    color:#D81E23;
+    font-size:40px;
+}

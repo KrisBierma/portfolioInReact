@@ -1,0 +1,30 @@
+[
+  {
+    "name":"hangman",
+    "title":"Hangman",
+    "image":"./assets/images/hangman-game.jpg",
+    "techs":["bootstrap", "javaScript", "css"],
+    "alt":"colors version of hangman game"
+  },
+  {
+    "name":"crystals",
+    "title":"Crystals",
+    "image":"./assets/images/crystals-game.png",
+    "techs":["javaScript", "jQuery", "css"],
+    "alt":"crystals game"
+  },
+  {
+    "name":"trivia",
+    "title":"Science Trivia",
+    "image":"./assets/images/triviaGame.png",
+    "techs":["javaScript","bootstrap", "jQuery"],
+    "alt":"science trivia game"
+  },
+  {
+    "name":"train",
+    "title":"Train Scheduler",
+    "image":"./assets/images/train.jpg",
+    "techs":["javaScript", "jQuery", "moment", "firebase", "css"],
+    "alt":"train scheduler app"
+  }
+]
