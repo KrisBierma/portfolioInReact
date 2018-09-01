@@ -3,8 +3,10 @@ import {Container, Row, Col} from "reactstrap";
 import PortApp from "./components/portApps";
 import NavBar from "./components/navBar";
 import Intro from "./components/intro";
+import Separator from "./components/separator";
 import projects from "./projects.json";
 import "./App.css";
+import PortfolioHeader from "./components/portfolioHeader";
 
 class App extends Component {
 
@@ -22,28 +24,29 @@ class App extends Component {
         <Row className="grey-box nomar justify-content-center">
           <div className="col-lg-9 col-md-11 col-sm-12 article">
 
-        <Intro />
+            <Intro />
+            <Separator id = "portfolio" />
+            <PortfolioHeader></PortfolioHeader>
+            {/* <TopButton></TopButton> */}
+            <Row>
+              <div className="port-grid">
+                {projects.map(project => (
+                  <PortApp 
+                    key={project.name}
+                    id={project.id}
+                    image={require(`${project.image}`)}
+                    alt={project.alt}
+                    title={project.title}
+                  />
+                ))}          
+              </div>
+            </Row>
+            <Separator id = "building_things" />
 
-        {/* <BioBox></BioBox> */}
-        {/* <TopButton></TopButton> */}
-        <Row>
-          <div className="port-grid">
-            {projects.map(project => (
-              <PortApp 
-                key={project.name}
-                id={project.id}
-                image={require(`${project.image}`)}
-                alt={project.alt}
-                title={project.title}
-              />
-            ))}          
+
           </div>
         </Row>
-        </div>
-{/* </div> */}
-        </Row>
       </Container>
-      // <
     )
   }
 }

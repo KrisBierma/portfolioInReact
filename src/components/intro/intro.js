@@ -28,7 +28,7 @@ const Intro = props => (
     <div className="row justify-content-center">
       <div className="scrollBody2">
           <h2 className=" scrolling2">Turning others' ideas into reality</h2> 
-          <h2 className="animated fadeIn">Turning others' ideas into reality</h2>
+          <h2 id="mission" className="animated fadeIn">Turning others' ideas into reality</h2>
       </div>
     </div>  
   </div>

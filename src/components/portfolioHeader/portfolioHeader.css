@@ -1,0 +1,52 @@
+/* portfolio menu section */
+.btn-collapse{
+  display:none; 
+  margin-top:12px;
+  margin-left:20px;
+}
+.sectionPort{
+  justify-content: left;
+  margin-top:80px;
+  margin-bottom:35px;
+  justify-content: center;
+}
+.fal{
+  color:white;
+}
+.fal-port{color:#9d151a;}
+.center{
+  text-align: center;
+}
+.btn-group{
+  margin-bottom: 20px;
+  flex-flow:wrap;
+  justify-content: center;
+}
+.btn-group>.btn:focus{
+  background-color:#cc0000;
+}
+.myIcons{
+  height:18px;
+}
+.myIcons2{
+  height:42px;
+}
+.myIcons3{
+  height:35px;
+}
+.myIcons4{
+  height:25px;
+}
+@media screen and (max-width:910px){
+  .btn-collapse{
+    display:inline-block; 
+  }  
+  .btn-group{
+    display: none;
+  }
+} 
+@media screen and (max-width:576px){
+  .btn-collapse{
+    display:inline-block; 
+  } 
+}
