@@ -7,11 +7,26 @@ import Separator from "./components/separator";
 import projects from "./projects.json";
 import "./App.css";
 import PortfolioHeader from "./components/portfolioHeader";
+import ProjectModal from "./components/projectModal";
 
 class App extends Component {
 
   state = {
     projects,
+    show:false,
+    what:"danger"
+  };
+
+  showModal = () => {
+    this.setState({show:true});
+  };
+
+  hideModal = () => {
+    this.setState({show:false});
+  };
+
+  toggle = () => {
+    this.setState({show: !this.state.show});
   };
 
   render() {
@@ -37,9 +52,16 @@ class App extends Component {
                     image={require(`${project.image}`)}
                     alt={project.alt}
                     title={project.title}
+                    showModal={this.showModal}
                   />
                 ))}          
               </div>
+              <ProjectModal
+                // buttonLabel={}
+                modal={this.state.show}
+                toggle={this.toggle}
+                className={this.state.what}
+              ></ProjectModal>
             </Row>
             <Separator id = "building_things" />
 
