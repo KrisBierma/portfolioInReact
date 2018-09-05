@@ -14,11 +14,20 @@ class App extends Component {
   state = {
     projects,
     show:false,
-    what:"danger"
+    what:"danger",
+    // title,
+    // body
   };
 
-  showModal = () => {
-    this.setState({show:true});
+  showModal = (title, body, github, site, image) => {
+    this.setState({
+      show:true,
+      title:title,
+      body:body,
+      github:github,
+      site:site,
+      image:image
+    });
   };
 
   hideModal = () => {
@@ -52,16 +61,27 @@ class App extends Component {
                     image={require(`${project.image}`)}
                     alt={project.alt}
                     title={project.title}
+                    body={project.body}
+                    github={project.github}
+                    site={project.site}
                     showModal={this.showModal}
                   />
                 ))}          
               </div>
+
               <ProjectModal
                 // buttonLabel={}
                 modal={this.state.show}
                 toggle={this.toggle}
                 className={this.state.what}
-              ></ProjectModal>
+                title={this.state.title}
+                body={this.state.body}
+                // github={this.state.github}
+                site={this.state.site}
+                github={this.state.github}
+                image={this.state.image}
+              ></ProjectModal> 
+
             </Row>
             <Separator id = "building_things" />
 

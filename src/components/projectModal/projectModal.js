@@ -4,13 +4,16 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 const ProjectModal = (props) => (
   <div>
-    {/* <Button color="danger" onClick={(toggle) => props.buttonLabel}></Button> */}
+    {/* <Button color="danger" onClick={props.toggle}></Button> */}
     <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
-      <ModalHeader toggle={props.toggle}>Modal Title</ModalHeader>
-      <ModalBody>stuff here</ModalBody>
+      <ModalHeader toggle={props.toggle}>{props.title}</ModalHeader>
+      <ModalBody>
+        <img src={props.image} className = "portPic"/>
+        {props.body}
+      </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={props.toggle}>Do something</Button>{' '}
-        <Button color="secondary" onClick={props.toggle}>Cancel</Button>
+        <Button href={`${props.github}`} color="primary" target="_blank">GitHub Repo</Button>{' '}
+        <Button color="secondary" href={props.site} target="_blank">Live Website</Button>
       </ModalFooter>
     </Modal>
   </div>

@@ -4,7 +4,10 @@
     "title":"Hangman",
     "image":"./assets/images/hangman-game.jpg",
     "techs":["bootstrap", "javaScript", "css"],
-    "alt":"colors version of hangman game"
+    "alt":"colors version of hangman game",
+    "body":"blah",
+    "github":"https://github.com/KrisBierma/Hangman-Game",
+    "site":"https://krisbierma.github.io/Hangman-Game/"
   },
   {
     "name":"crystals",
