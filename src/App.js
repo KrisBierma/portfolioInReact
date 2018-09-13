@@ -11,26 +11,26 @@ import ProjectModal from "./components/projectModal";
 
 class App extends Component {
 
-  // constructor(props) {
-    // super(props);
-      state = {
+  constructor(props) {
+    super(props);
+      this.state = {
         projects,
         show:false,
         what:"danger",
         // title,
         // body
         // techs:[]
-        id:4
+        // id:4
       };
-      // this.showModal = this.showModal.bind(this);
-  // }
+      this.showModal = this.showModal.bind(this);
+  }
 
 
   componentDidMount() {
     this.setState({projects:projects})
     console.log(projects);
     // this.showModal(this.state.title);
-    // console.log(this.state.index)
+    // console.log(this.state.id)
   }
 
   showModal = (title, body, github, site, image, id) => {
@@ -43,12 +43,16 @@ class App extends Component {
       site:site,
       image:image,
       techs:projects[id].techs
+    }, function() {
+      console.log(this.state.id);
+      console.log(this.state.title);
+      console.log(projects);
+      console.log(this.state.site)
+      console.log(this.state.techs)
+      this.writeTechs();      
     });
-    console.log(this.state.id);
-    console.log(this.state.title);
-    console.log(projects);
-    console.log(this.state.site)
-    console.log(this.state.techs)
+
+
   };
 
   hideModal = () => {
@@ -59,8 +63,16 @@ class App extends Component {
     this.setState({show: !this.state.show});
   };
 
-  writeTechs = (this.state.techs) => {
-    
+  // convert techs from array to grammatically correct sentence to display
+  writeTechs = () => {
+    const thisId = this.state.id;
+    console.log(thisId)
+    console.log(projects)
+    console.log(projects[thisId]);
+
+    console.log(projects[thisId].techs)
+    this.setState({techs: projects[thisId].techs.join(", ")});
+
   };
 
   render() {
@@ -82,9 +94,7 @@ class App extends Component {
               <div className="port-grid">
                 {projects.map((project, index) => {return(
                   <PortApp 
-                    // key={index}
-                    // index={index}
-                    // id={project[index]}
+                    key={project.title}
                     id={index}
                     image={require(`${project.image}`)}
                     alt={project.alt}
@@ -93,13 +103,8 @@ class App extends Component {
                     github={project.github}
                     site={project.site}
                     showModal={this.showModal}
-                    // techs={project.techs.map(tech => (console.log(tech)))}
-                    // techs={project.techs}
                   />
-                )}
-                // project.techs.map(tech => {console.log()})
-
-                )}          
+                )})}          
               </div>
 
               <ProjectModal

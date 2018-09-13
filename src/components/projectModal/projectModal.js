@@ -6,11 +6,13 @@ const ProjectModal = (props) => (
   <div>
     {/* <Button color="danger" onClick={props.toggle}></Button> */}
     <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
-      <ModalHeader toggle={props.toggle}>{props.title}</ModalHeader>
+      <ModalHeader toggle={props.toggle}>
+        <div className = "title">{props.title}</div>
+      </ModalHeader>
       <ModalBody>
         <img src={props.image} className = "portPic"/>
-        <div>{props.body}</div>
-        <div>Techs used: {props.techs}</div>
+        <div style={{marginTop: 10}}>{props.body}</div>
+        <div style={{marginTop: 10}}>Techs used: {props.techs}</div>
       </ModalBody>
       <ModalFooter>
         <Button href={`${props.github}`} color="primary" target="_blank">GitHub Repo</Button>{' '}
