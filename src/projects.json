@@ -3,9 +3,9 @@
     "name":"hangman",
     "title":"Hangman",
     "image":"./assets/images/hangman-game.jpg",
-    "techs":["bootstrap", "javaScript", "css"],
+    "techs":["Bootstrap", "JavaScript", "CSS"],
     "alt":"colors version of hangman game",
-    "body":"blah",
+    "body":"A classic Hangman Game using JavaScript and color words only. It counts wins, counts down guesses until a lose, displays the mystery word in spaces, fills in the correctly guessed letters, and displays a picture when finished. It doesn't show an actual man being hung because that's kind of gross.\n\nTech used: Bootstrap and JavaScript",
     "github":"https://github.com/KrisBierma/Hangman-Game",
     "site":"https://krisbierma.github.io/Hangman-Game/"
   },

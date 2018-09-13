@@ -9,7 +9,8 @@ const ProjectModal = (props) => (
       <ModalHeader toggle={props.toggle}>{props.title}</ModalHeader>
       <ModalBody>
         <img src={props.image} className = "portPic"/>
-        {props.body}
+        <div>{props.body}</div>
+        <div>Techs used: {props.techs}</div>
       </ModalBody>
       <ModalFooter>
         <Button href={`${props.github}`} color="primary" target="_blank">GitHub Repo</Button>{' '}

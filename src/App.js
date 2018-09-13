@@ -11,23 +11,44 @@ import ProjectModal from "./components/projectModal";
 
 class App extends Component {
 
-  state = {
-    projects,
-    show:false,
-    what:"danger",
-    // title,
-    // body
-  };
+  // constructor(props) {
+    // super(props);
+      state = {
+        projects,
+        show:false,
+        what:"danger",
+        // title,
+        // body
+        // techs:[]
+        id:4
+      };
+      // this.showModal = this.showModal.bind(this);
+  // }
 
-  showModal = (title, body, github, site, image) => {
+
+  componentDidMount() {
+    this.setState({projects:projects})
+    console.log(projects);
+    // this.showModal(this.state.title);
+    // console.log(this.state.index)
+  }
+
+  showModal = (title, body, github, site, image, id) => {
     this.setState({
       show:true,
+      id:id,
       title:title,
       body:body,
       github:github,
       site:site,
-      image:image
+      image:image,
+      techs:projects[id].techs
     });
+    console.log(this.state.id);
+    console.log(this.state.title);
+    console.log(projects);
+    console.log(this.state.site)
+    console.log(this.state.techs)
   };
 
   hideModal = () => {
@@ -36,6 +57,10 @@ class App extends Component {
 
   toggle = () => {
     this.setState({show: !this.state.show});
+  };
+
+  writeTechs = (this.state.techs) => {
+    
   };
 
   render() {
@@ -53,11 +78,14 @@ class App extends Component {
             <PortfolioHeader></PortfolioHeader>
             {/* <TopButton></TopButton> */}
             <Row>
+
               <div className="port-grid">
-                {projects.map(project => (
+                {projects.map((project, index) => {return(
                   <PortApp 
-                    key={project.name}
-                    id={project.id}
+                    // key={index}
+                    // index={index}
+                    // id={project[index]}
+                    id={index}
                     image={require(`${project.image}`)}
                     alt={project.alt}
                     title={project.title}
@@ -65,20 +93,26 @@ class App extends Component {
                     github={project.github}
                     site={project.site}
                     showModal={this.showModal}
+                    // techs={project.techs.map(tech => (console.log(tech)))}
+                    // techs={project.techs}
                   />
-                ))}          
+                )}
+                // project.techs.map(tech => {console.log()})
+
+                )}          
               </div>
 
               <ProjectModal
                 // buttonLabel={}
                 modal={this.state.show}
                 toggle={this.toggle}
+                id={this.state.id}
                 className={this.state.what}
                 title={this.state.title}
                 body={this.state.body}
-                // github={this.state.github}
-                site={this.state.site}
+                techs={this.state.techs}
                 github={this.state.github}
+                site={this.state.site}
                 image={this.state.image}
               ></ProjectModal> 
 
