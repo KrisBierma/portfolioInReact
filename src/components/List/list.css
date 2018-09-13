@@ -1,0 +1,31 @@
+.port-tags{
+  background-color:#333;
+  color:white;
+  -moz-box-shadow:    1px 1px 0 black;
+  -webkit-box-shadow: 1px 1px 0 black;
+  box-shadow:         1px 1px 0 black;
+  display:inline-block;
+  opacity: 0;
+  margin:2px;
+  font-size: 22px;
+  padding:0 8px 3px 8px;
+  border-width:1px 1px 2px 1px;
+  border-style:solid;
+  border-color: #0d0d0d;
+  border-radius: 3px;
+}
+.card:hover li{
+  transform: translateY(20px);
+  opacity: 1;
+  transition:transform .285s cubic-bezier(.5,1.5,.5,1.5), opacity;
+}
+.card:hover #li2{transition-delay:.2s;}
+.card:hover #li3{transition-delay:.4s;}
+.card:hover #li4{transition-delay:.6s;}
+.card:hover #li5{transition-delay:.8s;}
+.card:hover #li6{transition-delay:1.0s;}
+.card:hover #li7{transition-delay:1.2s;}
+.card:hover #li8{transition-delay:1.4s;}
+.card:hover #li9{transition-delay:1.6s;}
+.card:hover #li10{transition-delay:1.8s;}
+.card:hover #li11{transition-delay:2.0s;}

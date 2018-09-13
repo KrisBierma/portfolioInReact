@@ -84,32 +84,18 @@ h4{
 .btn:hover{
   background-color: #9d151a;
 }
-
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* .card:hover .port-tags-wrapper li{
+  transform: translateY(20px);
+  opacity: 1;
+  transition:transform .285s cubic-bezier(.5,1.5,.5,1.5), opacity;
 } */
+/* .card:hover #li2{transition-delay:.2s;}
+.card:hover #li3{transition-delay:.4s;}
+.card:hover #li4{transition-delay:.6s;}
+.card:hover #li5{transition-delay:.8s;}
+.card:hover #li6{transition-delay:1.0s;}
+.card:hover #li7{transition-delay:1.2s;}
+.card:hover #li8{transition-delay:1.4s;}
+.card:hover #li9{transition-delay:1.6s;}
+.card:hover #li10{transition-delay:1.8s;}
+.card:hover #li11{transition-delay:2.0s;} */

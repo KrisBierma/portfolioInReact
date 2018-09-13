@@ -8,6 +8,7 @@ import projects from "./projects.json";
 import "./App.css";
 import PortfolioHeader from "./components/portfolioHeader";
 import ProjectModal from "./components/projectModal";
+import {ListItem} from "./components/List";
 
 class App extends Component {
 
@@ -19,7 +20,8 @@ class App extends Component {
         what:"danger",
         // title,
         // body
-        // techs:[]
+        techs:[],
+        listItems:[]
         // id:4
       };
       this.showModal = this.showModal.bind(this);
@@ -29,11 +31,9 @@ class App extends Component {
   componentDidMount() {
     this.setState({projects:projects})
     console.log(projects);
-    // this.showModal(this.state.title);
-    // console.log(this.state.id)
   }
 
-  showModal = (title, body, github, site, image, id) => {
+  showModal = (title, body, github, site, image, id, alt) => {
     this.setState({
       show:true,
       id:id,
@@ -42,7 +42,8 @@ class App extends Component {
       github:github,
       site:site,
       image:image,
-      techs:projects[id].techs
+      techs:projects[id].techs,
+      alt:alt
     }, function() {
       console.log(this.state.id);
       console.log(this.state.title);
@@ -69,11 +70,14 @@ class App extends Component {
     console.log(thisId)
     console.log(projects)
     console.log(projects[thisId]);
-
     console.log(projects[thisId].techs)
     this.setState({techs: projects[thisId].techs.join(", ")});
 
   };
+
+  // to-do:
+  // top button doesn't work
+  // favicon
 
   render() {
     return (
@@ -103,7 +107,11 @@ class App extends Component {
                     github={project.github}
                     site={project.site}
                     showModal={this.showModal}
-                  />
+                   > 
+                  {project.techs.map((tech, index) => (
+                    <ListItem key={tech} id={index+1}>{tech}</ListItem>
+                  ))}
+                  </PortApp>
                 )})}          
               </div>
 
@@ -119,12 +127,11 @@ class App extends Component {
                 github={this.state.github}
                 site={this.state.site}
                 image={this.state.image}
+                alt={this.state.alt}
               ></ProjectModal> 
 
             </Row>
             <Separator id = "building_things" />
-
-
           </div>
         </Row>
       </Container>

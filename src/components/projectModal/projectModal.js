@@ -10,7 +10,7 @@ const ProjectModal = (props) => (
         <div className = "title">{props.title}</div>
       </ModalHeader>
       <ModalBody>
-        <img src={props.image} className = "portPic"/>
+        <img src={props.image} className = "portPic" alt={props.alt}/>
         <div style={{marginTop: 10}}>{props.body}</div>
         <div style={{marginTop: 10}}>Techs used: {props.techs}</div>
       </ModalBody>
