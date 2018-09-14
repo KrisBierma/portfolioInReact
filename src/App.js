@@ -64,6 +64,8 @@ class App extends Component {
     this.setState({show: !this.state.show});
   };
 
+  
+
   // convert techs from array to grammatically correct sentence to display
   writeTechs = () => {
     const thisId = this.state.id;
