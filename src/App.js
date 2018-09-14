@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Container, Row, Col} from "reactstrap";
+import {Container, Row, Col, ButtonGroup} from "reactstrap";
 import PortApp from "./components/portApps";
 import NavBar from "./components/navBar";
 import Intro from "./components/intro";
@@ -9,6 +9,7 @@ import "./App.css";
 import PortfolioHeader from "./components/portfolioHeader";
 import ProjectModal from "./components/projectModal";
 import {ListItem} from "./components/List";
+import {Button} from "./components/Button";
 
 class App extends Component {
 
@@ -17,13 +18,34 @@ class App extends Component {
       this.state = {
         projects,
         show:false,
-        what:"danger",
         currentBtn:"",
         techs:[],
-        listItems:[]
-        // id:4
+        listItems:[],
+        menu:[
+          {
+            id:"Node.js",
+            imgClass:"myIcons2",
+            place:"/nodeIcon.png",
+            name:""
+          },
+          {
+            id:"jQuery",
+            imgClass:"myIcons",
+            place:"/jqueryIcon.png",
+            name:" jQuery"
+          },
+          {
+            id:"Bootstrap",
+            imgClass:"myIcons2",
+            place:"/bootstrapIcon2.png",
+            name:""
+          }
+        ],
+        list:["jQuery", "Bootstrap", "Handlebars", "React", "Command-Line", "Firebase", "MySQL", "Sequelize", "Heroku", "Full Stack"]
       };
       this.showModal = this.showModal.bind(this);
+      this.showBtn = this.showBtn.bind(this);
+      this.hideBtn = this.hideBtn.bind(this);
   }
 
 
@@ -32,19 +54,10 @@ class App extends Component {
     console.log(projects);
   }
 
-  componentWillReceiveProps() {
-    console.log(projects);
-
-    this.myCallback();
-    this.setState({projects:projects})
-    console.log(projects);
-
-  }
-
-  myCallback = (dataFromChild) => {
-    console.log(dataFromChild);
-    this.setState({listDataFromChild:dataFromChild})
-  };
+  // componentWillReceiveProps() {
+  //   this.setState({projects:projects})
+  //   console.log(projects);
+  // }
 
   showModal = (title, body, github, site, image, id, alt) => {
     this.setState({
@@ -77,6 +90,53 @@ class App extends Component {
     this.setState({show: !this.state.show});
   };
 
+  // clicking this shows all the projects
+  showBtn() {
+    console.log(this.state.projects)
+    for (let i=0; i<this.state.projects.length; i++) {
+      // create a var for state
+      const location = this.state.projects;
+      // make that var for each specific project's newClass = "show"; can't do these steps in setState; must be done outside of it
+      location[i].newClass = "show";
+      // dynamically add className of "show" to all projects
+      this.setState({
+        location  
+      });
+    }
+    console.log(projects);
+  };
+
+  // clicking any btn except showAll hides the projects without that technology
+  hideBtn(id) {
+    // make sure all projects are present and accounted for first
+    this.showBtn();
+    console.log(id)
+    // loop through projects and set all included to false
+    for (let i=0; i<this.state.projects.length; i++){
+      const included = this.state.projects;
+      included[i].inc = false;
+
+      // loop through the techs of each project; if the project has a tech that matches the button clicked, set its included to true
+      for (let j=0; j<included[i].techs.length; j++){
+        if (included[i].techs[j] === id) {
+          included[i].inc = true;
+        }
+        console.log("here")
+      }
+
+      // if the current project is not included, add class "hide"
+      if (included[i].inc !== true) {
+        const location = this.state.projects;
+        location[i].newClass = "hide";
+        this.setState({
+          location  
+        });
+        console.log("here")
+      }
+
+    }
+    console.log(this.state.projects)
+  };
 
 
   // convert techs from array to grammatically correct sentence to display
@@ -105,7 +165,35 @@ class App extends Component {
 
             <Intro />
             <Separator id = "portfolio" />
-            <PortfolioHeader callbackFromParent={this.myCallback}></PortfolioHeader>
+            <PortfolioHeader>
+              <div>
+              <ListItem id={"allHamburger"} showBtn={this.showBtn}>Show All</ListItem>
+              <li id="allHamburger" className="btn" onClick={this.showBtn}>Show all</li>
+              
+              {this.state.list.map(name => { return(
+                <ListItem id={name} className="portColl" hideBtn={this.hideBtn}>{name}</ListItem>
+              )
+              })}
+              </div>
+{/* <div> */}
+              <ButtonGroup>
+              <button className="btn" id="all" onClick={this.showBtn}>Show all</button>  
+
+              {this.state.menu.map(butt => { return(
+                <Button id={butt.id} hideBtn={this.hideBtn}>
+                  <img className={butt.imgClass} 
+                  alt={butt.id}
+                  src=
+                  {require(`./assets/images${butt.place}`)}
+                  />
+                  {butt.name}
+                </Button>
+              )
+
+              })}
+              </ButtonGroup>
+              {/* </div> */}
+            </PortfolioHeader>
             {/* <TopButton></TopButton> */}
             <Row>
 
@@ -135,7 +223,7 @@ class App extends Component {
                 modal={this.state.show}
                 toggle={this.toggle}
                 id={this.state.id}
-                className={this.state.what}
+                // className={this.state.what}
                 title={this.state.title}
                 body={this.state.body}
                 techs={this.state.techs}
@@ -147,6 +235,9 @@ class App extends Component {
 
             </Row>
             <Separator id = "building_things" />
+
+            <Separator id = "contact" />
+
           </div>
         </Row>
       </Container>
