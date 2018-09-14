@@ -18,8 +18,7 @@ class App extends Component {
         projects,
         show:false,
         what:"danger",
-        // title,
-        // body
+        currentBtn:"",
         techs:[],
         listItems:[]
         // id:4
@@ -32,6 +31,20 @@ class App extends Component {
     this.setState({projects:projects})
     console.log(projects);
   }
+
+  componentWillReceiveProps() {
+    console.log(projects);
+
+    this.myCallback();
+    this.setState({projects:projects})
+    console.log(projects);
+
+  }
+
+  myCallback = (dataFromChild) => {
+    console.log(dataFromChild);
+    this.setState({listDataFromChild:dataFromChild})
+  };
 
   showModal = (title, body, github, site, image, id, alt) => {
     this.setState({
@@ -64,7 +77,7 @@ class App extends Component {
     this.setState({show: !this.state.show});
   };
 
-  
+
 
   // convert techs from array to grammatically correct sentence to display
   writeTechs = () => {
@@ -74,7 +87,6 @@ class App extends Component {
     console.log(projects[thisId]);
     console.log(projects[thisId].techs)
     this.setState({techs: projects[thisId].techs.join(", ")});
-
   };
 
   // to-do:
@@ -93,7 +105,7 @@ class App extends Component {
 
             <Intro />
             <Separator id = "portfolio" />
-            <PortfolioHeader></PortfolioHeader>
+            <PortfolioHeader callbackFromParent={this.myCallback}></PortfolioHeader>
             {/* <TopButton></TopButton> */}
             <Row>
 
@@ -108,6 +120,7 @@ class App extends Component {
                     body={project.body}
                     github={project.github}
                     site={project.site}
+                    newClass={project.newClass}
                     showModal={this.showModal}
                    > 
                   {project.techs.map((tech, index) => (

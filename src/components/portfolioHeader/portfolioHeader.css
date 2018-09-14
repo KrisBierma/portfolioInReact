@@ -37,6 +37,11 @@
 .myIcons4{
   height:25px;
 }
+.show{display:initial;}
+.hide{
+  display:none;
+}
+
 @media screen and (max-width:910px){
   .btn-collapse{
     display:inline-block; 

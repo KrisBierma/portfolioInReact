@@ -7,14 +7,18 @@
     "alt":"colors version of hangman game",
     "body":"A classic Hangman Game using JavaScript and color words only. It counts wins, counts down guesses until a lose, displays the mystery word in spaces, fills in the correctly guessed letters, and displays a picture when finished. It doesn't show an actual man being hung because that's kind of gross.",
     "github":"https://github.com/KrisBierma/Hangman-Game",
-    "site":"https://krisbierma.github.io/Hangman-Game/"
+    "site":"https://krisbierma.github.io/Hangman-Game/",
+    "newClass":"",
+    "inc":true
   },
   {
     "name":"crystals",
     "title":"Crystals",
     "image":"./assets/images/crystals-game.png",
     "techs":["JavaScript", "jQuery", "CSS"],
-    "alt":"crystals game"
+    "alt":"crystals game",
+    "newClass":"",
+    "inc":true
   },
   {
     "name":"trivia",
