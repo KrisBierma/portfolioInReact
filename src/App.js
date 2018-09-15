@@ -10,6 +10,9 @@ import PortfolioHeader from "./components/portfolioHeader";
 import ProjectModal from "./components/projectModal";
 import {ListItem} from "./components/List";
 import {Button} from "./components/Button";
+import Bio from "./components/Bio";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 class App extends Component {
 
@@ -48,16 +51,10 @@ class App extends Component {
       this.hideBtn = this.hideBtn.bind(this);
   }
 
-
   componentDidMount() {
     this.setState({projects:projects})
     console.log(projects);
   }
-
-  // componentWillReceiveProps() {
-  //   this.setState({projects:projects})
-  //   console.log(projects);
-  // }
 
   showModal = (title, body, github, site, image, id, alt) => {
     this.setState({
@@ -151,7 +148,6 @@ class App extends Component {
 
   // to-do:
   // top button doesn't work
-  // favicon
 
   render() {
     return (
@@ -234,12 +230,13 @@ class App extends Component {
               ></ProjectModal> 
 
             </Row>
-            <Separator id = "building_things" />
-
-            <Separator id = "contact" />
-
+            <Separator id = "bio" />
+            <Bio></Bio>
+            <Separator id="contact"></Separator>
+            <Contact></Contact>
           </div>
         </Row>
+        <Footer></Footer>
       </Container>
     )
   }
