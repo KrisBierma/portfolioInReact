@@ -9,18 +9,9 @@ const PortApp = (props) => (
     <div className = "card-img-overlay">
       <p className = "card-title">{props.title}</p>
     </div>
-    {/* <div className = "stay"> */}
-    <List>
-      {props.children}
-      {/* {props.listItems} */}
-      {/* <ListItem>
-
-      </ListItem> */}
+    <List> 
+      {props.children} 
     </List>
-      {/* <ul className = "port-tags-wrapper"> */}
-        {/* {children} */}
-      {/* </ul> */}
-    {/* </div> */}
   </div>
 );
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import {Container, Row, Col, ButtonGroup} from "reactstrap";
+import {Container, Row, ButtonGroup} from "reactstrap";
 import PortApp from "./components/portApps";
-import NavBar from "./components/navBar";
+import NavbarComponent from "./components/navBar";
 import Intro from "./components/intro";
 import Separator from "./components/separator";
 import projects from "./projects.json";
@@ -24,6 +24,7 @@ class App extends Component {
         currentBtn:"",
         techs:[],
         listItems:[],
+        btnClassname:"btn",
         menu:[
           {
             id:"Node.js",
@@ -49,12 +50,34 @@ class App extends Component {
       this.showModal = this.showModal.bind(this);
       this.showBtn = this.showBtn.bind(this);
       this.hideBtn = this.hideBtn.bind(this);
-  }
+      this.handleScroll = this.handleScroll.bind(this);
+      this.toTop = this.toTop.bind(this);
+  };
 
   componentDidMount() {
-    this.setState({projects:projects})
+    this.setState({projects:projects});
     console.log(projects);
-  }
+    window.addEventListener("scroll", this.handleScroll);
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  };
+
+
+  // TODO:
+  // fix spacing in bio
+  // make sure dividers show up
+
+  // when user starts scrolling, 'go to top' btn appears
+  handleScroll(event) {
+    if (document.documentElement.scrollTop > 500){
+      this.setState({btnClassname:"btn topBtnShow"});
+    }
+    else {
+      this.setState({btnClassname:"btn hide"});
+    }
+  };
 
   showModal = (title, body, github, site, image, id, alt) => {
     this.setState({
@@ -135,6 +158,11 @@ class App extends Component {
     console.log(this.state.projects)
   };
 
+  // clicking "go to the top" button takes user to top of screen
+  toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop=0;
+  };
 
   // convert techs from array to grammatically correct sentence to display
   writeTechs = () => {
@@ -146,15 +174,12 @@ class App extends Component {
     this.setState({techs: projects[thisId].techs.join(", ")});
   };
 
-  // to-do:
-  // top button doesn't work
-
   render() {
     return (
       <Container className="container-fluid" id="home">
-        <NavBar></NavBar>
+        <NavbarComponent></NavbarComponent>
        
-        <button id="topBtn" className="btn" title="Go to the top"><i className="far fa fa-angle-double-up" aria-hidden="true"> </i> To the top</button>
+        <button id="topBtn" className={this.state.btnClassname} onClick={this.toTop}title="Go to the top"><i className="far fa fa-angle-double-up" aria-hidden="true"> </i> To the top</button>
 
         <Row className="grey-box nomar justify-content-center">
           <div className="col-lg-9 col-md-11 col-sm-12 article">
@@ -163,18 +188,18 @@ class App extends Component {
             <Separator id = "portfolio" />
             <PortfolioHeader>
               <div>
-              <ListItem id={"allHamburger"} showBtn={this.showBtn}>Show All</ListItem>
-              <li id="allHamburger" className="btn" onClick={this.showBtn}>Show all</li>
-              
-              {this.state.list.map(name => { return(
-                <ListItem id={name} className="portColl" hideBtn={this.hideBtn}>{name}</ListItem>
-              )
-              })}
+                <ListItem id={"allHamburger"} showBtn={this.showBtn}>Show All</ListItem>
+                <li id="allHamburger" className="btn" onClick={this.showBtn}>Show all</li>
+                
+                {this.state.list.map(name => { return(
+                  <ListItem id={name} className="portColl" hideBtn={this.hideBtn}>{name}</ListItem>
+                )
+                })}
               </div>
-{/* <div> */}
-              <ButtonGroup>
-              <button className="btn" id="all" onClick={this.showBtn}>Show all</button>  
 
+            {/* go through menu of technologies and create buttons */}
+            <ButtonGroup>
+              <button className="btn" id="all" onClick={this.showBtn}>Show all</button>  
               {this.state.menu.map(butt => { return(
                 <Button id={butt.id} hideBtn={this.hideBtn}>
                   <img className={butt.imgClass} 
@@ -184,15 +209,12 @@ class App extends Component {
                   />
                   {butt.name}
                 </Button>
-              )
+              )})}
+            </ButtonGroup>
 
-              })}
-              </ButtonGroup>
-              {/* </div> */}
             </PortfolioHeader>
-            {/* <TopButton></TopButton> */}
-            <Row>
 
+            <Row>
               <div className="port-grid">
                 {projects.map((project, index) => {return(
                   <PortApp 
@@ -215,11 +237,9 @@ class App extends Component {
               </div>
 
               <ProjectModal
-                // buttonLabel={}
                 modal={this.state.show}
                 toggle={this.toggle}
                 id={this.state.id}
-                // className={this.state.what}
                 title={this.state.title}
                 body={this.state.body}
                 techs={this.state.techs}

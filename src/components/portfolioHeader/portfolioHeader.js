@@ -3,9 +3,6 @@ import "./portfolioHeader.css";
 
 const PortfolioHeader = (props) => (
 
-  // TO-Do:
-// make button icon images show up
-
   <div>
     <div className="row sectionPort">
       <h3>Portfolio</h3>
@@ -22,9 +19,7 @@ const PortfolioHeader = (props) => (
     </div>
 
     <div className="center">
-      {/* <div className="btn-group" role="group" aria-label="App technologies"> */}
-        {props.children[1]}
-      {/* </div> */}
+      {props.children[1]}
     </div>
   </div>
 );

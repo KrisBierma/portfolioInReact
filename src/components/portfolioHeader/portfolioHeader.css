@@ -4,6 +4,12 @@
   margin-top:12px;
   margin-left:20px;
 }
+/* collapseable button for portfolio images */
+#portCollapse{
+  font-size:22px;
+  line-height: 36px;
+  font-weight:700;
+} 
 .sectionPort, .sectionBio, .sectionContact{
   justify-content: left;
   margin-top:80px;

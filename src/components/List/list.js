@@ -9,5 +9,3 @@ export const List = ({children}) => {
       </ul>
   </div>
   )};
-
-// export default List;

@@ -1,32 +1,64 @@
-import React from "react";
+import React, {Component} from "react";
+import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DrownToggle, DrAzopdownMenu, DropdownItem } from "reactstrap";
 import "./navBar.css";
 
-const NavBar = props => (
-  <nav className="navbar navbar-expand-md sticky-top justify-content-between">
-  <div className="container">
-      <h1>Kris Acker Bierma</h1>
+  class NavbarComponent extends Component {
+    
+    constructor(props) {
+      super(props);
+      // this.toggleNavbar = this.toggleNavbar.bind(this);
+      this.toggle = this.toggle.bind(this);
+      this.state = {
+        // collapsed: true
+        isOpen: false
+      };
+    }
 
-      <button className="navbar-toggler navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navColl" aria-expanded="false" aria-label="Toggle navigation">
-          <span><i className="fal fa-bars fa"></i></span>
-      </button>
-      
-      <div className="collapse navbar-collapse" id="navColl">
-          <ul className="nav navbar-nav text-right float-right pr-3">
-              <li className="nav-item">
-                  <a className="nav-link" href="#portfolio">Portfolio</a>
-              </li>
-              <li className="pipe"> | </li>
-              <li className="nav-item">
-                  <a className="nav-link" href="#building_things">Building Things / Bio</a>
-              </li>
-              <li className="pipe"> | </li>
-              <li className="nav-item">
-                  <a className="nav-link" href="#contact">Contact</a>
-              </li>
-          </ul>
-      </div>
-  </div>
-</nav>  
-);
+    // functions here
+    // toggleNavbar() {
+    //   this.setState({
+    //     collapsed: !this.state.collapsed
+    //   });
+    // };
+    toggle() {
+      this.setState ({
+        isOpen: !this.state.isOpen
+      });
+    };
 
-export default NavBar;
+    render() {
+      return (
+        // <Navbar collapseOnSelect>
+        <div>
+        <Navbar color="faded" light expand="md" fixed={`top`}>
+            <NavbarBrand>
+              <h1>Kris Acker Bierma</h1>
+            </NavbarBrand>
+
+            {/* <NavbarToggler className="mr-2" onClick={this.toggleNavbar} /> */}
+            <NavbarToggler onClick={this.toggle}/>
+
+            {/* <Collapse isOpen={!this.state.collapsed} navbar> */}
+            <Collapse isOpen={this.state.isOpen} navbar>
+            <div right>
+              <Nav classname="mr-auto" navbar>
+                <NavItem>
+                  <NavLink href="#portfolio">Portfolio</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="#bio">Bio</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="#contact">Contact</NavLink>
+                </NavItem>
+              </Nav>
+              </div>
+            </Collapse>
+        </Navbar>  
+        </div>     
+      )
+    }
+
+  };
+
+  export default NavbarComponent;

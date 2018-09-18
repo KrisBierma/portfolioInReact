@@ -5,5 +5,3 @@ export const ListItem = (props) => {
   return(
 <li id={`li${props.id}`} className="port-tags" onClick={() => props.hideBtn(props.id)}>{props.children}</li> 
   )};
-
-// export default ListItem;
