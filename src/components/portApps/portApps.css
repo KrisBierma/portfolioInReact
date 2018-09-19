@@ -12,8 +12,10 @@
   position: relative;
 }
 .portPic{
-  max-width:303px;
-  max-height:202px;   
+  /* max-width:303px; */
+  max-width: 357px;
+  /* max-height:202px;    */
+  max-height:220px;
 }
 /* portfolio language tags wrapper */
 .port-tags-wrapper{
@@ -31,7 +33,7 @@
   background-color:#D81E23;
   color:#ffffff;
   text-align: center;
-  width:303px;
+  width:357px;
   font-size: 18px;
   height:28px;
   margin-bottom:3px;
@@ -43,7 +45,7 @@
   margin-bottom:15px;
   margin-left:0;
   margin-right:0;
-  width:305px;
+  /* width:305px; */
   display:block;
 }
 /* what happens to the port pics when hovering */

@@ -19,7 +19,11 @@
 .fal{
   color:white;
 }
-.fal-port{color:#9d151a;}
+.listStyle{
+  font-size: 16px;
+  list-style-type: none;
+  cursor: pointer;
+}
 .center{
   text-align: center;
 }

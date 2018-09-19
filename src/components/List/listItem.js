@@ -3,5 +3,5 @@ import "./list.css";
 
 export const ListItem = (props) => {
   return(
-<li id={`li${props.id}`} className="port-tags" onClick={() => props.hideBtn(props.id)}>{props.children}</li> 
+    <li id={props.id} className={props.classN} onClick={() => props.hideBtn(props.id)}>{props.children}</li> 
   )};

@@ -45,29 +45,26 @@ class App extends Component {
             name:""
           }
         ],
-        list:["jQuery", "Bootstrap", "Handlebars", "React", "Command-Line", "Firebase", "MySQL", "Sequelize", "Heroku", "Full Stack"]
+        list:["jQuery", "Bootstrap", "Handlebars", "React", "Command-Line", "Firebase", "MySQL", "Sequelize", "Heroku", "Full Stack"],
+        isOpen: false
       };
       this.showModal = this.showModal.bind(this);
       this.showBtn = this.showBtn.bind(this);
       this.hideBtn = this.hideBtn.bind(this);
       this.handleScroll = this.handleScroll.bind(this);
       this.toTop = this.toTop.bind(this);
+      this.toggleMenu = this.toggleMenu.bind(this);
+      this.sayHi = this.sayHi.bind(this);
   };
 
   componentDidMount() {
     this.setState({projects:projects});
-    console.log(projects);
     window.addEventListener("scroll", this.handleScroll);
   };
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   };
-
-
-  // TODO:
-  // fix spacing in bio
-  // make sure dividers show up
 
   // when user starts scrolling, 'go to top' btn appears
   handleScroll(event) {
@@ -107,7 +104,14 @@ class App extends Component {
   };
 
   toggle = () => {
+    console.log("hi")
     this.setState({show: !this.state.show});
+  };
+
+  // toggles the portfolio buttons hamburger menu from open to closed
+  toggleMenu = () => {
+    console.log("hi");
+    this.setState({isOpen: !this.state.isOpen});
   };
 
   // clicking this shows all the projects
@@ -174,25 +178,31 @@ class App extends Component {
     this.setState({techs: projects[thisId].techs.join(", ")});
   };
 
+  // random function 
+  sayHi(id) {
+  }
+
   render() {
     return (
       <Container className="container-fluid" id="home">
         <NavbarComponent></NavbarComponent>
        
-        <button id="topBtn" className={this.state.btnClassname} onClick={this.toTop}title="Go to the top"><i className="far fa fa-angle-double-up" aria-hidden="true"> </i> To the top</button>
+        <button id="topBtn" className={this.state.btnClassname} onClick={this.toTop} title="Go to the top"><i className="far fa fa-angle-double-up" aria-hidden="true"> </i> To the top</button>
 
         <Row className="grey-box nomar justify-content-center">
           <div className="col-lg-9 col-md-11 col-sm-12 article">
 
             <Intro />
             <Separator id = "portfolio" />
-            <PortfolioHeader>
+            <PortfolioHeader
+              toggleMenu = {this.toggleMenu}
+              isOpen = {this.state.isOpen}>
+              {/* Portfolio menu for small screens */}
               <div>
-                <ListItem id={"allHamburger"} showBtn={this.showBtn}>Show All</ListItem>
-                <li id="allHamburger" className="btn" onClick={this.showBtn}>Show all</li>
+                <li id="allHamburger" className="portColl" onClick={this.showBtn}>Show all</li>
                 
-                {this.state.list.map(name => { return(
-                  <ListItem id={name} className="portColl" hideBtn={this.hideBtn}>{name}</ListItem>
+                {this.state.menu.map(butt => { return(
+                  <ListItem id={butt.id} key={butt.id} className="portColl" hideBtn={this.hideBtn}>{butt.id}</ListItem>
                 )
                 })}
               </div>
@@ -201,7 +211,7 @@ class App extends Component {
             <ButtonGroup>
               <button className="btn" id="all" onClick={this.showBtn}>Show all</button>  
               {this.state.menu.map(butt => { return(
-                <Button id={butt.id} hideBtn={this.hideBtn}>
+                <Button key={butt.id} id={butt.id} hideBtn={this.hideBtn}>
                   <img className={butt.imgClass} 
                   alt={butt.id}
                   src=
@@ -230,7 +240,7 @@ class App extends Component {
                     showModal={this.showModal}
                    > 
                   {project.techs.map((tech, index) => (
-                    <ListItem key={tech} id={index+1}>{tech}</ListItem>
+                    <ListItem key={tech} hideBtn={this.sayHi(1)} classN="port-tags" id={`li${index+1}`}>{tech} </ListItem>
                   ))}
                   </PortApp>
                 )})}          

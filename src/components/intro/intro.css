@@ -9,9 +9,9 @@
   border:1px solid black;
   width: 75%;
 }
-.change{
+/* .change{
   display: inherit;
-}
+} */
 .scrollBody1, .scrollBody2{
   display:flex;
 }

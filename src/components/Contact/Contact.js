@@ -12,7 +12,7 @@ const Contact = () => (
       alt="linkedIn icon leads to Kris's linkedIn page"></a>
       <a aria-hidden href="https://github.com/KrisBierma" className="fab fa-github fa-lg" rel="noopener noreferrer" target="_blank" 
       alt="GitHub icon leads to Kris's GitHub page"></a>
-      <a aria-hidden href={"mailto:kris.bierma@gmail.com"} className="fas fa-envelope fa-lg" rel="noopener noreferrer" target="_blank" alt="icon to email Kris"></a>
+      <a href={"mailto:kris.bierma@gmail.com"} className="fas fa-envelope fa-lg" rel="noopener noreferrer" target="_blank" alt="icon to email Kris" aria-hidden></a>
     </div>  
   </div>
 );
