@@ -229,14 +229,9 @@ class App extends Component {
                 {projects.map((project, index) => {return(
                   <PortApp 
                     key={project.title}
+                    project={project}
                     id={index}
                     image={require(`${project.image}`)}
-                    alt={project.alt}
-                    title={project.title}
-                    body={project.body}
-                    github={project.github}
-                    site={project.site}
-                    newClass={project.newClass}
                     showModal={this.showModal}
                    > 
                   {project.techs.map((tech, index) => (

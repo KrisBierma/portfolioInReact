@@ -18,7 +18,7 @@ const Intro = props => (
 
         <div className="row justify-content-center change">
           <div className="center">
-              <h4 className="animated fadeIn">Full-Stack Developer</h4>
+              <h4 className="animated fadeIn">Full-Stack Developer - Engineer</h4>
               <a href="https://unsplash.com/photos/QDM6-fFKP0s?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" rel="noopener noreferrer" target="_blank"><img src={require("../../assets/images/p3.jpg")} alt="full stack of pancakes" className="img-fluid pancakes animated fadeIn center" /></a>
           </div>
         </div>
