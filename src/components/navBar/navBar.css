@@ -17,7 +17,7 @@
     color:white;
     line-height: 15px;
 }
-.nav-item:hover{
+.nav-link:hover{
     background-color:#9d151a;
     color:white;
     box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.2), 2px 5px 10px 0 rgba(0, 0, 0, 0.19);
@@ -28,7 +28,7 @@
     display:block;
     padding:.5rem .5rem;
 }
-.nav-item:active{
+.nav-link:active{
     background-color:#D81E23;
     box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.2), 2px 5px 10px 0 rgba(0, 0, 0, 0.19);
     border-radius: 75%;
@@ -48,14 +48,14 @@
     .navbar-nav{
         margin-left:auto;
     }
-    .nav-item:hover{
+    .nav-link:hover{
         border-radius:25%;
         padding:1px 8px 0 10px;
     }
     .pipe{
         display: none;
     }
-    .nav-item{
+    .nav-link{
         text-align: right;
         margin-right:20px;
         margin-left:auto;

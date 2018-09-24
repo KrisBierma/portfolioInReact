@@ -11,12 +11,6 @@
   flex-wrap:wrap;
   position: relative;
 }
-.portPic{
-  /* max-width:303px; */
-  max-width: 357px;
-  /* max-height:202px;    */
-  max-height:220px;
-}
 /* portfolio language tags wrapper */
 .port-tags-wrapper{
   position: relative;

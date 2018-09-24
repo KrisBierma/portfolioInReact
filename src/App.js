@@ -8,7 +8,7 @@ import projects from "./projects.json";
 import "./App.css";
 import PortfolioHeader from "./components/portfolioHeader";
 import ProjectModal from "./components/projectModal";
-import {ListItem} from "./components/List";
+import {ListItem, ListTech} from "./components/List";
 import {Button} from "./components/Button";
 import Bio from "./components/Bio";
 import Contact from "./components/Contact";
@@ -43,6 +43,54 @@ class App extends Component {
             imgClass:"myIcons2",
             place:"/bootstrapIcon2.png",
             name:""
+          },
+          {
+            id:"Handlebars",
+            imgClass:"myIcons4",
+            place:"/hbsIcon2.png",
+            name:""
+          },
+          {
+            id:"React",
+            imgClass:"myIcons2",
+            place:"/reactIcon2.png",
+            name:""
+          },
+          {
+            id:"Command Line",
+            imgClass:"myIcons5",
+            place:"/cliIcon.png",
+            name:" Command Line"
+          },
+          {
+            id:"Firebase",
+            imgClass:"myIcons4",
+            place:"/firebaseIcon.png",
+            name:""
+          },
+          {
+            id:"MySQL",
+            imgClass:"myIcons3",
+            place:"/mysqlIcon.png",
+            name:""
+          },
+          {
+            id:"MongoDB",
+            imgClass:"myIcons3",
+            place:"/mongoIcon.png",
+            name:""
+          },
+          {
+            id:"Heroku",
+            imgClass:"myIcons4",
+            place:"/herokuIcon.png",
+            name:""
+          },
+          {
+            id:"Full Stack",
+            imgClass:"myIcons4",
+            place:"/fullStackIcon.png",
+            name:"Full Stack"
           }
         ],
         list:["jQuery", "Bootstrap", "Handlebars", "React", "Command-Line", "Firebase", "MySQL", "Sequelize", "Heroku", "Full Stack"],
@@ -54,7 +102,6 @@ class App extends Component {
       this.handleScroll = this.handleScroll.bind(this);
       this.toTop = this.toTop.bind(this);
       this.toggleMenu = this.toggleMenu.bind(this);
-      this.sayHi = this.sayHi.bind(this);
   };
 
   componentDidMount() {
@@ -134,7 +181,7 @@ class App extends Component {
   hideBtn(id) {
     // make sure all projects are present and accounted for first
     this.showBtn();
-    console.log(id)
+
     // loop through projects and set all included to false
     for (let i=0; i<this.state.projects.length; i++){
       const included = this.state.projects;
@@ -145,7 +192,6 @@ class App extends Component {
         if (included[i].techs[j] === id) {
           included[i].inc = true;
         }
-        console.log("here")
       }
 
       // if the current project is not included, add class "hide"
@@ -155,9 +201,7 @@ class App extends Component {
         this.setState({
           location  
         });
-        console.log("here")
       }
-
     }
     console.log(this.state.projects)
   };
@@ -177,10 +221,6 @@ class App extends Component {
     console.log(projects[thisId].techs)
     this.setState({techs: projects[thisId].techs.join(", ")});
   };
-
-  // random function 
-  sayHi(id) {
-  }
 
   render() {
     return (
@@ -235,7 +275,7 @@ class App extends Component {
                     showModal={this.showModal}
                    > 
                   {project.techs.map((tech, index) => (
-                    <ListItem key={tech} hideBtn={this.sayHi(1)} classN="port-tags" id={`li${index+1}`}>{tech} </ListItem>
+                    <ListTech key={tech} classN="port-tags" id={`li${index+1}`}>{tech} </ListTech>
                   ))}
                   </PortApp>
                 )})}          
