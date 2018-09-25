@@ -18,6 +18,7 @@ class NavbarComponent extends Component {
     this.setState ({
       isOpen: !this.state.isOpen
     });
+    console.log("hi")
   };
 
   render() {
@@ -35,15 +36,15 @@ class NavbarComponent extends Component {
             <Collapse isOpen={this.state.isOpen} navbar id="navColl">
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="#portfolio">Portfolio</NavLink>
+                  <NavLink onClick={this.toggle} href="#portfolio">Portfolio</NavLink>
                 </NavItem>
                 <NavItem className="pipe"> | </NavItem>
                 <NavItem>
-                  <NavLink href="#bio">Bio</NavLink>
+                  <NavLink onClick={this.toggle} href="#bio">Bio</NavLink>
                 </NavItem>
                 <NavItem className="pipe"> | </NavItem>
                 <NavItem>
-                  <NavLink href="#contact">Contact</NavLink>
+                  <NavLink onClick={this.toggle} href="#contact">Contact</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>

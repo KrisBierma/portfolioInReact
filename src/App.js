@@ -102,6 +102,7 @@ class App extends Component {
       this.handleScroll = this.handleScroll.bind(this);
       this.toTop = this.toTop.bind(this);
       this.toggleMenu = this.toggleMenu.bind(this);
+      this.oneClick = this.oneClick.bind(this);
   };
 
   componentDidMount() {
@@ -135,11 +136,11 @@ class App extends Component {
       techs:projects[id].techs,
       alt:alt
     }, function() {
-      console.log(this.state.id);
-      console.log(this.state.title);
-      console.log(projects);
-      console.log(this.state.site)
-      console.log(this.state.techs)
+      // console.log(this.state.id);
+      // console.log(this.state.title);
+      // console.log(projects);
+      // console.log(this.state.site)
+      // console.log(this.state.techs)
       this.writeTechs();      
     });
 
@@ -150,6 +151,7 @@ class App extends Component {
     this.setState({show:false});
   };
 
+  // toggle the modals for the projects
   toggle = () => {
     console.log("hi")
     this.setState({show: !this.state.show});
@@ -161,9 +163,21 @@ class App extends Component {
     this.setState({isOpen: !this.state.isOpen});
   };
 
+  // used for the portfolio menu on small screens; closes the menu and show the desired projects
+  oneClick = (id) => {
+    this.hideBtn(id);
+    this.toggleMenu();
+  }
+
+  // used for the 'show all' button on small screen menu
+  oneClickShow = () => {
+    this.showBtn();
+    this.toggleMenu();
+  };
+
   // clicking this shows all the projects
   showBtn() {
-    console.log(this.state.projects)
+    // console.log(this.state.projects)
     for (let i=0; i<this.state.projects.length; i++) {
       // create a var for state
       const location = this.state.projects;
@@ -174,7 +188,8 @@ class App extends Component {
         location  
       });
     }
-    console.log(projects);
+    // console.log(projects);
+    // this.toggleMenu();
   };
 
   // clicking any btn except showAll hides the projects without that technology
@@ -203,7 +218,8 @@ class App extends Component {
         });
       }
     }
-    console.log(this.state.projects)
+    // console.log(this.state.projects)
+    // this.toggleMenu();
   };
 
   // clicking "go to the top" button takes user to top of screen
@@ -215,10 +231,10 @@ class App extends Component {
   // convert techs from array to grammatically correct sentence to display
   writeTechs = () => {
     const thisId = this.state.id;
-    console.log(thisId)
-    console.log(projects)
-    console.log(projects[thisId]);
-    console.log(projects[thisId].techs)
+    // console.log(thisId)
+    // console.log(projects)
+    // console.log(projects[thisId]);
+    // console.log(projects[thisId].techs)
     this.setState({techs: projects[thisId].techs.join(", ")});
   };
 
@@ -239,28 +255,28 @@ class App extends Component {
               isOpen = {this.state.isOpen}>
               {/* Portfolio menu for small screens */}
               <div>
-                <li id="allHamburger" className="portColl" onClick={this.showBtn}>Show all</li>
+                <li id="allHamburger" className="portColl" onClick={this.oneClickShow}>Show all</li>
                 
                 {this.state.menu.map(butt => { return(
-                  <ListItem id={butt.id} key={butt.id} className="portColl" hideBtn={this.hideBtn}>{butt.id}</ListItem>
+                  <ListItem id={butt.id} key={butt.id} className="portColl" hideBtn={this.oneClick}>{butt.id}</ListItem>
                 )
                 })}
               </div>
 
-            {/* go through menu of technologies and create buttons */}
-            <ButtonGroup>
-              <button className="btn" id="all" onClick={this.showBtn}>Show all</button>  
-              {this.state.menu.map(butt => { return(
-                <Button key={butt.id} id={butt.id} hideBtn={this.hideBtn}>
-                  <img className={butt.imgClass} 
-                  alt={butt.id}
-                  src=
-                  {require(`./assets/images${butt.place}`)}
-                  />
-                  {butt.name}
-                </Button>
-              )})}
-            </ButtonGroup>
+              {/* go through menu of technologies and create buttons */}
+              <ButtonGroup>
+                <button className="btn" id="all" onClick={this.showBtn}>Show all</button>  
+                {this.state.menu.map(butt => { return(
+                  <Button key={butt.id} id={butt.id} hideBtn={this.hideBtn}>
+                    <img className={butt.imgClass} 
+                    alt={butt.id}
+                    src=
+                    {require(`./assets/images${butt.place}`)}
+                    />
+                    {butt.name}
+                  </Button>
+                )})}
+              </ButtonGroup>
 
             </PortfolioHeader>
 
