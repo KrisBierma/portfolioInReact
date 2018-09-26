@@ -1,14 +1,12 @@
 .portPic{
-  /* max-width:303px;
-  max-height:202px;   */
   display:block;
   margin:0 auto; 
   border: 2px solid gray;
   border-radius: 5px;
-  /* max-width:303px; */
   max-width: 357px;
-  /* max-height:202px;    */
   max-height:220px;
+  /* need min-width for MS Edge */
+  min-width:357px;
 }
 .modal-xl{
   width:75%;
