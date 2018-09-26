@@ -8,7 +8,7 @@ const PortfolioHeader = (props) => (
     <div className="row sectionPort">
       <h3>Portfolio</h3>
       <div className="btn-collapse">
-        <button onClick={() => props.toggleMenu()} className="btn" >
+        <button onClick={() => props.toggleMenu()} className="btn portBtn" >
           <span><i className="fal fal-port fa-bars fa"></i></span>
         </button>
         <Collapse id="portCollapse" isOpen={props.isOpen}>

@@ -37,7 +37,7 @@
   to {width:100%}
 }
 .pancakes{
-  width:210px;
+  max-width:50%;
   margin-top:20px;
   animation-delay:1.5s;
 }
@@ -61,5 +61,20 @@
   #mission{
     display:block;
     text-align: center;
+  }
+  .scrollBody1{
+    width:240px;
+    margin:auto;
+  }
+  .scrolling2{
+    display:none;
+  }
+  #mission{
+    display:block;
+    text-align: center;
+  }
+  .profilePic{
+    float:none;
+    margin:auto;
   }
 } 

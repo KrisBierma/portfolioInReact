@@ -4,11 +4,11 @@ import "./intro.css";
 const Intro = props => (
   <div>
     <div className="row sectionHome justify-content-center">
-      <div className="col-md">
+      <div className="col-sm">
           <img src={require("../../assets/images/profilePic.JPG")} className="profilePic img-fluid" alt="headshot of Kris Acker Bierma"/>
       </div>
 
-      <div className="col-md">
+      <div className="col-sm">
         <div className="row justify-content-center change">
           <div className="scrollBody1">
               <h2 className=" scrolling1">Hi! I'm Kris.</h2>

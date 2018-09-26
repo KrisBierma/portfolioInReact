@@ -4,6 +4,11 @@
   margin-top:12px;
   margin-left:20px;
 }
+.portBtn{
+  background-color: transparent !important;
+  box-shadow: none !important;
+
+}
 /* collapseable button for portfolio images */
 #portCollapse{
   font-size:22px;
