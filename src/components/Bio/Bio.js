@@ -42,11 +42,15 @@ const Bio = () => (
           <li>Writing analytical papers is fun.</li>
 
           <li>I love coding because it's a cool combo of 
-            <a aria-hidden href="https://res.cloudinary.com/teepublic/image/private/s--E4iFZJvP--/t_Preview/b_rgb:ef4a81,c_limit,f_jpg,h_630,q_90,w_630/v1500915594/production/designs/1762056_0.jpg" target="_blank" rel="noopener noreferrer"> building something</a>
+            {/* <a aria-hidden href="https://res.cloudinary.com/teepublic/image/private/s--E4iFZJvP--/t_Preview/b_rgb:ef4a81,c_limit,f_jpg,h_630,q_90,w_630/v1500915594/production/designs/1762056_0.jpg" target="_blank" rel="noopener noreferrer"> */}
+             building something
+             {/* </a> */}
               <div className="box">
-                <iframe src="https://res.cloudinary.com/teepublic/image/private/s--E4iFZJvP--/t_Preview/b_rgb:ef4a81,c_limit,f_jpg,h_630,q_90,w_630/v1500915594/production/designs/1762056_0.jpg" frameBorder="0" title="build like a girl"></iframe></div>
+                {/* <iframe src="https://res.cloudinary.com/teepublic/image/private/s--E4iFZJvP--/t_Preview/b_rgb:ef4a81,c_limit,f_jpg,h_630,q_90,w_630/v1500915594/production/designs/1762056_0.jpg" frameBorder="0" title="build like a girl"></iframe></div> */}
             , 
-            <a href="https://usercontent1.hubstatic.com/1127756.jpg" target="_blank" rel="noopener noreferrer" aria-hidden> doing a puzzle </a>
+            {/* <a href="https://usercontent1.hubstatic.com/1127756.jpg" target="_blank" rel="noopener noreferrer" aria-hidden> */}
+             doing a puzzle 
+             {/* </a> */}
               <div className="box">
                 <iframe src="https://usercontent1.hubstatic.com/1127756.jpg" frameBorder="0" title="picture of person doing a jigsaw puzzle"></iframe></div>
             and logic games. Plus, it 
