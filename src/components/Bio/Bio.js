@@ -24,7 +24,7 @@ const Bio = () => (
         
         <ul>
           <li>know how to break things down.</li>
-          <li>can juggle mulitple projects at once.</li>
+          <li>can juggle multiple projects at once.</li>
           <li>am efficient and manage time well.</li>
           <li>know how data analysis influences work.</li>
         </ul>
