@@ -2,7 +2,7 @@
   {
     "name":"plantos",
     "title":"Plantos",
-    "image":"./assets/images/plantos.jpg",
+    "image":"plantos.jpg",
     "techs":["Node.js", "Express", "MySQL", "Sequelize", "Passport", "Handlebars", "Bootstrap", "Heroku", "Full Stack"],
     "alt":"plant watering app",
     "body":"Plantos is a scheduler for watering your plants. Search for plants in our database or enter in your own. Then each plant's watering needs are managed by the app and reminders are sent when it's time to water. Never forget to water your plants again!",
@@ -14,7 +14,7 @@
   {
     "name":"peanutsGame",
     "title":"The Peanuts Game",
-    "image":"./assets/images/reactGame.png",
+    "image":"reactGame.png",
     "techs":["React", "JavaScript", "GitHub Pages", "Bootstrap"],
     "alt":"peanuts the cartoon clicky game",
     "body":"The Peanuts Game is built with React and deployed on GitHub Pages. The object is to click all cards only once without repeating.",
@@ -26,7 +26,7 @@
   {
     "name":"friendFinder",
     "title":"Friend Finder",
-    "image":"./assets/images/friendfinder.png",
+    "image":"friendfinder.png",
     "techs":["JavaScript", "jQuery", "Node.js", "Express", "Heroku", "Full Stack"],
     "alt":"friend finder app",
     "body":"Answer questions to be matched with the perfect friend! Our powerful algorithms take in your answers and match it to other users' data. This full-stack app uses express to set up its server, API and html routes to direct traffic, and express to read and post data to the server and website.",
@@ -38,7 +38,7 @@
   {
     "name":"stockMarket",
     "title":"Stock Market Pets",
-    "image":"./assets/images/stockMarket.png",
+    "image":"stockMarket.png",
     "techs":["React", "MongoDB", "MySQL", "Node.js", "Full Stack"],
     "alt":"stock market pets app",
     "body":"Geared toward people with little knowledge of the stock market, Stock Market Pets is part learning game, part Tamagotchi. The user chooses a stock-themed pet, buys and sells shares, and increases their pet's health by earning money, using the app frequently and interacting with the online forums.",
@@ -50,7 +50,7 @@
   {
     "name":"veggieEats",
     "title":"My Veggie Eats",
-    "image":"./assets/images/myVeggieEats.png",
+    "image":"myVeggieEats.png",
     "techs":["JavaScript", "jQuery", "Materialize", "Firebase"],
     "alt":"my veggie eats app",
     "body":"My Veggie Eats specializes in finding vegetarian restaurants (though you can also search other cuisines) in the area. Once logged in, the user can customize tabs with addresses and save notes.",
@@ -62,7 +62,7 @@
   {
     "name":"mongoScraper",
     "title":"News Scraper",
-    "image":"./assets/images/mongoScraper.jpg",
+    "image":"mongoScraper.jpg",
     "techs":["JavaScript", "Node.js", "Express", "MongoDB", "Mongoose", "Handlebars", "Bootstrap", "Heroku", "Full Stack"],
     "alt":"news scraper app",
     "body":"The News Scraper scrapes the New York Times for articles, which show up with a title and summary. There's an option to save articles and, once saved, add notes. Notes and scraped article data is saved on Mongo via mongoose. It's a full stack application using node and express for the server, deployment on Heroku, Mongo for the database, and Handlebars for the front-end. It follows a MVC (model view controller) design.",
@@ -74,7 +74,7 @@
   {
     "name":"portfolio",
     "title":"Portfolio",
-    "image":"./assets/images/portfolio.png",
+    "image":"portfolio.png",
     "techs":["React", "reactstrap", "JavaScript"],
     "alt":"portfolio of Kris Acker Bierma (AKA the site you're on now)",
     "body":"This is the site you're on now.",
@@ -86,7 +86,7 @@
   {
     "name":"hangman",
     "title":"Hangman",
-    "image":"./assets/images/hangman-game.jpg",
+    "image":"hangman-game.jpg",
     "techs":["Bootstrap", "JavaScript", "CSS"],
     "alt":"colors version of hangman game",
     "body":"A classic Hangman Game using JavaScript and color words only. It counts wins, counts down guesses until there's a loss, displays the mystery word in spaces, fills in the correctly guessed letters, and displays a picture when finished. It doesn't show an actual man being hung because that's kind of gross.",
@@ -98,7 +98,7 @@
   {
     "name":"train",
     "title":"Train Scheduler",
-    "image":"./assets/images/train.jpg",
+    "image":"train.jpg",
     "techs":["JavaScript", "jQuery", "Moment.js", "Firebase", "CSS"],
     "alt":"train scheduler app",
     "body":"A simple app to keep track of trains in real time.",
@@ -110,7 +110,7 @@
   {
     "name":"liri",
     "title":"Liri",
-    "image":"./assets/images/node.png",
+    "image":"node.png",
     "techs":["JavaScript", "Node.js", "NPM", "Command Line"],
     "alt":"Node app using the terminal only",
     "body":"The language interpretation and recognition interface (LIRI) runs from the terminal, making  a browser unnecessary. Using one of four commands it can pull up recent tweets and search for a user-inputted song on Spotify or a movie on OMDB.",
