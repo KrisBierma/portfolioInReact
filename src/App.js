@@ -16,6 +16,8 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
 import PsalmsLanding from './pages/PsalmsLanding';
 import Portfolio from './pages/Portfolio';
+import IndividualPsalm from './pages/IndividualPsalm';
+import PsalmsComparison from "./pages/PsalmsComparison";
 
 class App extends Component {
   render() {
@@ -23,7 +25,9 @@ class App extends Component {
       <Router>
         <div>
         <Route exact path='/' component={Portfolio} />
-        <Route exact path='/psalms' component={PsalmsLanding} /> 
+        <Route exact path='/psalms' component={PsalmsLanding} />
+        <Route exact path='/psalmsCompare' component={PsalmsComparison} />
+        <Route exact path='/psalm/:psalmId' component={IndividualPsalm} /> 
       </div>
       </Router>      
     )

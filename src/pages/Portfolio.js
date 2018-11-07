@@ -287,7 +287,7 @@ class App extends Component {
                     key={project.title}
                     project={project}
                     id={index}
-                    image={require(`../assets/images/${project.image}`)}
+                    image={require(`${project.image}`)}
                     showModal={this.showModal}
                    > 
                   {project.techs.map((tech, index) => (
