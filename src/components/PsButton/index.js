@@ -1,1 +1,1 @@
-export {default} from './PsButton';
+export * from './PsButton';

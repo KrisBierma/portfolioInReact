@@ -18,91 +18,91 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-      this.state = {
-        projects,
-        show:false,
-        currentBtn:'',
-        techs:[],
-        listItems:[],
-        btnClassname:'btn',
-        menu:[
-          {
-            id:'Node.js',
-            imgClass:'myIcons2',
-            place:'/nodeIcon.png',
-            name:''
-          },
-          {
-            id:'jQuery',
-            imgClass:'myIcons',
-            place:'/jqueryIcon.png',
-            name:' jQuery'
-          },
-          {
-            id:'Bootstrap',
-            imgClass:'myIcons2',
-            place:'/bootstrapIcon2.png',
-            name:''
-          },
-          {
-            id:'Handlebars',
-            imgClass:'myIcons4',
-            place:'/hbsIcon2.png',
-            name:''
-          },
-          {
-            id:'React',
-            imgClass:'myIcons2',
-            place:'/reactIcon2.png',
-            name:''
-          },
-          {
-            id:'Command Line',
-            imgClass:'myIcons5',
-            place:'/cliIcon.png',
-            name:' Command Line'
-          },
-          {
-            id:'Firebase',
-            imgClass:'myIcons4',
-            place:'/firebaseIcon.png',
-            name:''
-          },
-          {
-            id:'MySQL',
-            imgClass:'myIcons3',
-            place:'/mysqlIcon.png',
-            name:''
-          },
-          {
-            id:'MongoDB',
-            imgClass:'myIcons3',
-            place:'/mongoIcon.png',
-            name:''
-          },
-          {
-            id:'Heroku',
-            imgClass:'myIcons4',
-            place:'/herokuIcon.png',
-            name:''
-          },
-          {
-            id:'Full Stack',
-            imgClass:'myIcons4',
-            place:'/fullStackIcon.png',
-            name:'Full Stack'
-          }
-        ],
-        list:['jQuery', 'Bootstrap', 'Handlebars', 'React', 'Command-Line', 'Firebase', 'MySQL', 'Sequelize', 'Heroku', 'Full Stack'],
-        isOpen: false
-      };
-      this.showModal = this.showModal.bind(this);
-      this.showBtn = this.showBtn.bind(this);
-      this.hideBtn = this.hideBtn.bind(this);
-      this.handleScroll = this.handleScroll.bind(this);
-      this.toTop = this.toTop.bind(this);
-      this.toggleMenu = this.toggleMenu.bind(this);
-      this.oneClick = this.oneClick.bind(this);
+    this.state = {
+      projects,
+      show:false,
+      currentBtn:'',
+      techs:[],
+      listItems:[],
+      btnClassname:'btn',
+      menu:[
+        {
+          id:'Node.js',
+          imgClass:'myIcons2',
+          place:'/nodeIcon.png',
+          name:''
+        },
+        {
+          id:'jQuery',
+          imgClass:'myIcons',
+          place:'/jqueryIcon.png',
+          name:' jQuery'
+        },
+        {
+          id:'Bootstrap',
+          imgClass:'myIcons2',
+          place:'/bootstrapIcon2.png',
+          name:''
+        },
+        {
+          id:'Handlebars',
+          imgClass:'myIcons4',
+          place:'/hbsIcon2.png',
+          name:''
+        },
+        {
+          id:'React',
+          imgClass:'myIcons2',
+          place:'/reactIcon2.png',
+          name:''
+        },
+        {
+          id:'Command Line',
+          imgClass:'myIcons5',
+          place:'/cliIcon.png',
+          name:' Command Line'
+        },
+        {
+          id:'Firebase',
+          imgClass:'myIcons4',
+          place:'/firebaseIcon.png',
+          name:''
+        },
+        {
+          id:'MySQL',
+          imgClass:'myIcons3',
+          place:'/mysqlIcon.png',
+          name:''
+        },
+        {
+          id:'MongoDB',
+          imgClass:'myIcons3',
+          place:'/mongoIcon.png',
+          name:''
+        },
+        {
+          id:'Heroku',
+          imgClass:'myIcons4',
+          place:'/herokuIcon.png',
+          name:''
+        },
+        {
+          id:'Full Stack',
+          imgClass:'myIcons4',
+          place:'/fullStackIcon.png',
+          name:'Full Stack'
+        }
+      ],
+      list:['jQuery', 'Bootstrap', 'Handlebars', 'React', 'Command-Line', 'Firebase', 'MySQL', 'Sequelize', 'Heroku', 'Full Stack'],
+      isOpen: false
+    };
+    this.showModal = this.showModal.bind(this);
+    this.showBtn = this.showBtn.bind(this);
+    this.hideBtn = this.hideBtn.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.toTop = this.toTop.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.oneClick = this.oneClick.bind(this);
   };
 
   componentDidMount() {
@@ -287,7 +287,7 @@ class App extends Component {
                     key={project.title}
                     project={project}
                     id={index}
-                    image={require(`${project.image}`)}
+                    image={require(`../assets/images/${project.image}`)}
                     showModal={this.showModal}
                    > 
                   {project.techs.map((tech, index) => (
