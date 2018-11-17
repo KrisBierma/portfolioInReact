@@ -1,0 +1,11 @@
+.psalmsList, .psalmsList a{
+  color:black;
+  text-decoration: none;
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 8px;
+}
+.psalmsList a:hover{
+  color:#D81E23;
+  font-weight: 600;
+}

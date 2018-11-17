@@ -28,7 +28,7 @@ class App extends Component {
         <Route exact path='/psalms' component={PsalmsLanding} />
         <Route exact path='/psalmsCompare' component={PsalmsComparison} />
         <Route exact path='/psalm/:psalmId' component={IndividualPsalm} /> 
-        <Route path='*' component={Portfolio} />
+        {/* <Route path='*' component={Portfolio} /> */}
       </div>
       </Router>      
     )

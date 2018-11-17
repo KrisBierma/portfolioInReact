@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Container, Row, ButtonGroup} from 'reactstrap';
 import {PsButton} from '../components/PsButton';
 import axios from 'axios';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './Psalms.css';
 
 class PsalmsLanding extends Component {
 
@@ -35,7 +36,7 @@ class PsalmsLanding extends Component {
   }
 
   changePage(id) {
-    <Link to='/psalmsCompare' />
+    <Link to='/' />
     console.log(id);
   }
 
@@ -56,15 +57,23 @@ class PsalmsLanding extends Component {
         </Row>
 
         <PsButton key='pageChange' id='psalmsCompare' changePage={this.changePage}>Psalms Comparison Chart</ PsButton>
-
+<ul>
         {psalms.map((psalm) => {
           return(
-            <PsButton
-            key={psalm}
+            <li
             id={`psalm${psalm}`}
-            changePage={this.changePage}
-            >{psalm}</PsButton>            
+            key={psalm}
+            className='psalmsList'
+            >
+            <Link to={`/psalm/${psalm}`}>{psalm}</Link>
+            </li>     
           )})}
+
+          </ul>
+
+        <Row>
+            <Link to="/">← Back to Authors</Link>
+        </Row>
 
       </Container>
       </div>    
