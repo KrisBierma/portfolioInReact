@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Row, ButtonGroup} from 'reactstrap';
+import {Container, Row} from 'reactstrap';
 import {PsButton} from '../components/PsButton';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -36,7 +36,7 @@ class PsalmsLanding extends Component {
   }
 
   changePage(id) {
-    <Link to='/' />
+    <Link to='/psalmsCompare' />
     console.log(id);
   }
 
