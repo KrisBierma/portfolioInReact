@@ -9,7 +9,7 @@ class IndividualPsalm extends Component {
     this.state = {
       psalmId: '',
       wholeChapeter: '',
-      newFreq:{}
+      freq:[]
     }
     this.getPsalm=this.getPsalm.bind(this);
     this.countWords = this.countWords.bind(this);
@@ -46,33 +46,33 @@ class IndividualPsalm extends Component {
       // console.log(res.data.passages[0]);
       this.setState({wholeChapeter: res.data.passages[0]});
       this.countWords(this.state.wholeChapeter);
-      // console.log()
     });
   }
 
   // count the frequency of words in the psalm
   countWords(string) {
-    // replace . with spaces. Split string at spaces into individual words in an array. Start a new obj to hold words and their frequency.
+    // replace . with spaces. Split string at spaces into individual words in an array. Start a new array of objects to hold words and their frequency.
     const words = string.toLowerCase().replace(/[.,;!?]/g, '').split(/\s/);
-    const freq = {};
-
-    // loop through each word in the string. if the word isn't in the frequency obj, add it and git it a count of 0. If it's already in there, +1 the count.
+    const freq=[];
+    
+    // loop through each word in the string. if the word isn't in the frequency array, add it and git it a count of 0. If it's already in there, +1 the count.
     words.forEach(function(w){
       if (!freq[w]){
         freq[w] = 0;
       }
       freq[w] +=1;
     });
-    console.log(freq);
 
     // filter out articles, conjunctions
     const dontCount = ['and', 'or', 'the', ' ', 'by', 'a', 'an', 'on', 'to', 'is', 'in', 'for', 'are', 'of', ''];
     let flag = false; // true=the word is in the dontCount list
-    const newFreq = {}; // updated list of words from psalm, minus dontCount words
-    // loop through each word in freq object
+    const newFreq = []; // updated list of words from psalm, minus dontCount words
+    // loop through each word in freq array
+    // word is each key in the freq array
     for (let word in freq) {
       flag=false;
       // loop through each word in dontCount array
+      // w is each word in the dontCount array
       dontCount.forEach(function(w) {
         // console.log(w, word, freq[word])
         if (!flag){
@@ -82,14 +82,33 @@ class IndividualPsalm extends Component {
       })
       if (!flag) {newFreq[word]=freq[word];}
     }
-    console.log(newFreq)
-    this.setState({newFreq: newFreq});
+    this.setState({freq: newFreq});
+    this.displayCountedWords();
   }
 
+  // filters out words that only show up once in the psalm; sorts from greatest to least; displays in the table
   displayCountedWords(){
-    // get newFreq
-    // filter out any pairs = 1
+    const freq = this.state.freq;
+    const newFreq=[]; // new array to hold updated list
+
+    // filter out any words that only show up once
+    for (let word in freq) {
+      if (freq[word] > 1){
+        newFreq[word]=freq[word];
+      }
+    }
+
     // sort from greatest to least
+    console.log(newFreq[0]);
+    // for (let i=0; i<newFreq.length;i++){
+    //   console.log(newFreq(i));
+    // }
+    for (let key in newFreq) {
+      console.log(key)
+    }
+    console.log(newFreq.sort(function(a,b){return a-b}))
+  
+    console.log(Array.isArray(newFreq));
     // display in table
   }
 
