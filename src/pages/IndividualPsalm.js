@@ -14,7 +14,8 @@ class IndividualPsalm extends Component {
     this.getPsalm = this.getPsalm.bind(this);
     this.getWords = this.getWords.bind(this);
     this.countWords = this.countWords.bind(this);
-    this.displayCountedWords = this.displayCountedWords.bind(this);
+    this.sortWords = this.sortWords.bind(this);
+    this.renderWords = this.renderWords.bind(this);
   }
   componentDidMount() {
     this.setState({psalmId: this.props.match.params.psalmId});
@@ -66,12 +67,16 @@ class IndividualPsalm extends Component {
     dontCount.forEach(function(noWord){
       // loop through each word from the psalm array
       for (let i=0; i<words.length; i++){
+        // set var to catch blank space with ascii code NaN
+        let blankSpace = words[i].charCodeAt(0);
+
         // if the psalm array word is equal to the dontCount word, remove the psalm word from the array
-        if (noWord === words[i]) {
+        if (noWord === words[i] || isNaN(blankSpace)) {
           words.splice(i, 1)
         }
       }
-  })
+    }
+  )
     // console.log(words)
     this.setState({freq: words});
     this.countWords();
@@ -80,7 +85,7 @@ class IndividualPsalm extends Component {
   // count the frequency of words in the psalm
   countWords() {
     const words = this.state.freq;
-    console.log(words)
+    // console.log(words)
     const freq=[];
     let amount = 1;
     let flag;
@@ -120,22 +125,23 @@ class IndividualPsalm extends Component {
         }
       })
     }
-    console.log(freq)
-    this.displayCountedWords();
+    this.setState({freq: freq})
+    this.sortWords();
   }
 
   // filters out words that only show up once in the psalm; sorts from greatest to least; displays in the table
-  displayCountedWords(){
-    console.log('here')
+  sortWords(){
+    console.log(this.state.freq)
     const freq = this.state.freq;
     const newFreq=[]; // new array to hold updated list
 
     // filter out any words that only show up once
-    for (let word in freq) {
-      if (freq[word] > 1){
-        newFreq[word]=freq[word];
+    for (let i=0; i<freq.length;i++){
+      if (freq[i].value > 1){
+        newFreq.push(freq[i]);
       }
     }
+    console.log(newFreq)
 
     // sort from greatest to least
     // console.log(newFreq.but);
@@ -149,6 +155,17 @@ class IndividualPsalm extends Component {
   
     // console.log(Array.isArray(newFreq));
     // display in table
+    this.setState({freq:newFreq});
+  }
+
+  renderWords(props){
+    const freq = this.state.freq;
+    return(    
+      <tr>
+        <td>{props.wordle}</td>
+        <td>{props.value}</td>
+      </tr>
+    )
   }
 
   render() {
@@ -159,9 +176,26 @@ class IndividualPsalm extends Component {
             <h1>{`Psalm ${this.state.psalmId}`}</h1>
             <p>{this.state.wholeChapeter}</p>
           </Row>
-          <Row>
 
+          <Row>
+            <table>
+              <tbody>
+                <th>
+                  <td>Word</td>
+                  <td>Count</td>
+                </th>
+
+                {this.state.freq.map(row => (
+                <tr>
+                  <td>{row.wordle}</td>
+                  <td>{row.value}</td>
+                </tr>
+                ))
+                }               
+              </tbody>
+            </table>             
           </Row>
+
           <Row>
             <Link to='/psalms'>Return to Psalms Home</Link>
           </Row>
