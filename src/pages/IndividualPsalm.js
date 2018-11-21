@@ -16,7 +16,7 @@ class IndividualPsalm extends Component {
   }
   componentDidMount() {
     this.setState({psalmId: this.props.match.params.psalmId});
-    console.log(this.props.match.params.psalmId);
+    // console.log(this.props.match.params.psalmId);
     // console.log(this);
     // console.log(this.state.psalmId);
     this.getPsalm();
@@ -56,13 +56,91 @@ class IndividualPsalm extends Component {
     const freq=[];
     
     // loop through each word in the string. if the word isn't in the frequency array, add it and git it a count of 0. If it's already in there, +1 the count.
-    words.forEach(function(w){
-      if (!freq[w]){
-        freq[w] = 0;
-      }
-      freq[w] +=1;
-    });
+    // freq = [{word:'and', value:1}, {word:'but', value:5}];
+    // words.forEach(function(w){
+    //   if (!freq[w]){
+    //     freq[w] = 0;
+    //   }
+    //   freq[w] +=1;
+    // });
+// console.log(words);
+      let amount = 1;
+const words2=["is", "am", "is"];
 
+    // add first word to array
+    if (freq[0]===undefined){
+      flag=false;
+      console.log('adding first word')
+      var obj = {wordle:words2[0], value:0};
+      freq.push(obj);
+      freq[0].value+=1; 
+    }
+    if (freq[0]!==undefined) {
+
+    
+    words2.forEach(function(w){
+      //  console.log(freq.length)
+      let flag=false;
+      let place;
+      // console.log(amount)
+
+      // cycle through array of obj
+      for (let i=0; i<amount; i++){
+        console.log("compare "+freq[i].wordle + " with '"+ w + "'")
+        place=i;
+        console.log("place: "+place);
+console.log(freq[i])
+
+          // if find current word in the array, flag true
+          if (freq[i].wordle!=w){
+            flag=false;
+          }
+          else {
+            flag=true;
+            console.log("flag: "+flag);
+          } 
+        
+        // console.log(typeof(freq[i].wordle), typeof(w))
+    
+        console.log("end for loop") 
+      }
+
+      console.log(flag)
+      if (flag){
+        console.log('place: '+place)
+        freq[place].value+=1;  
+        console.log("word is already there, ++ to value. " +freq[place+1].value)
+      }
+      // if flag=true, ++ the value
+      else {
+        var obj = {wordle:w, value:0};
+        freq.push(obj);
+        freq[place].value+=1;  
+             amount++;
+        console.log("the new obj: ");
+        console.log(obj)
+        console.log(freq)
+      }
+      console.log("___________________________")
+
+      // if flag=false (word not found in array), add the obj
+      // if (!flag){
+      //   var obj = {wordle:w, value:0};
+      //   freq.push(obj);
+      //   freq[place+1].value+=1;  
+      //        amount++;
+      //   console.log(obj)
+      //   console.log(freq)
+      // }
+      // // if flag=true, ++ the value
+      // else {
+      //   freq[place+1].value+=1;  
+      //   console.log(freq[place+1].value)
+      // }
+    })
+  }
+
+console.log(freq)
     // filter out articles, conjunctions
     const dontCount = ['and', 'or', 'the', ' ', 'by', 'a', 'an', 'on', 'to', 'is', 'in', 'for', 'are', 'of', ''];
     let flag = false; // true=the word is in the dontCount list
@@ -99,16 +177,16 @@ class IndividualPsalm extends Component {
     }
 
     // sort from greatest to least
-    console.log(newFreq[0]);
+    // console.log(newFreq.but);
     // for (let i=0; i<newFreq.length;i++){
     //   console.log(newFreq(i));
     // }
     for (let key in newFreq) {
-      console.log(key)
+      // console.log(key)
     }
-    console.log(newFreq.sort(function(a,b){return a-b}))
+    // console.log(newFreq.sort(function(a,b){return a-b}))
   
-    console.log(Array.isArray(newFreq));
+    // console.log(Array.isArray(newFreq));
     // display in table
   }
 
