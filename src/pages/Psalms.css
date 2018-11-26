@@ -9,3 +9,15 @@
   color:#D81E23;
   font-weight: 600;
 }
+.psalmContainer{
+  margin:0;
+  padding:0;
+  max-width:100%;
+}
+.psalmsContent{
+  padding: 50px;
+  margin:0;
+}
+th, td{
+  /* text-align: center; */
+}

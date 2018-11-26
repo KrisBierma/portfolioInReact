@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import PsHeader from '../components/PsHeader';
+import psalms from '../psalms.json';
+import Footer from '../components/Footer';
 
 class IndividualPsalm extends Component {
   constructor(props){
@@ -9,7 +12,9 @@ class IndividualPsalm extends Component {
     this.state = {
       psalmId: '',
       wholeChapeter: '',
-      freq:[]
+      freq:[],
+      psalms,
+      number:[]
     }
     this.getPsalm = this.getPsalm.bind(this);
     this.getWords = this.getWords.bind(this);
@@ -18,10 +23,20 @@ class IndividualPsalm extends Component {
     this.renderWords = this.renderWords.bind(this);
   }
   componentDidMount() {
-    this.setState({psalmId: this.props.match.params.psalmId});
+    this.setState({
+      psalmId: this.props.match.params.psalmId,
+      psalms:psalms,
+      number:psalms[this.props.match.params.psalmId-1]
+    }, () => {
+      // console.log(this.state.psalmId);
+      // console.log(this.state.number)
+      // console.log(this.state.psalms[this.state.psalmId].author);
+      // console.log(this.state.number);
+      // console.log(psalms[this.state.psalmId])
+      // console.log(this.state.number.author);
+    });
     // console.log(this.props.match.params.psalmId);
     // console.log(this);
-    // console.log(this.state.psalmId);
     this.getPsalm();
   }
 
@@ -141,20 +156,9 @@ class IndividualPsalm extends Component {
         newFreq.push(freq[i]);
       }
     }
-    console.log(newFreq)
 
-    // sort from greatest to least
-    // console.log(newFreq.but);
-    // for (let i=0; i<newFreq.length;i++){
-    //   console.log(newFreq(i));
-    // }
-    for (let key in newFreq) {
-      // console.log(key)
-    }
-    // console.log(newFreq.sort(function(a,b){return a-b}))
-  
-    // console.log(Array.isArray(newFreq));
-    // display in table
+    // sort words from greatest to least
+    newFreq.sort(function(a,b){return b.value-a.value});
     this.setState({freq:newFreq});
   }
 
@@ -171,34 +175,75 @@ class IndividualPsalm extends Component {
   render() {
     return(
       <div>
-        <Container>
-          <Row>
+        <Container className='psalmContainer'>
+          {/* <Row>
             <h1>{`Psalm ${this.state.psalmId}`}</h1>
-            <p>{this.state.wholeChapeter}</p>
-          </Row>
+          </Row> */}
+          <PsHeader psalmId={this.state.psalmId} />
+          
+          <Row className='psalmsContent'>
+            <Col>
+              <Row>
+                <Col xs='6' sm='8'>
+                  <p>{this.state.wholeChapeter}</p>
+                </Col>
+                <Col>
+                  <table align='center'>
+                    <thead>
+                      <tr>
+                        <th>Word</th>
+                        <th>Count</th>
+                      </tr>
+                    </thead>
 
-          <Row>
+                    <tbody>
+                      {this.state.freq.map(row => (
+                      <tr key={row.wordle}>
+                        <td>{row.wordle}</td>
+                        <td>{row.value}</td>
+                      </tr>
+                      ))
+                      }               
+                    </tbody>
+                  </table>  
+                </Col>
+              </Row>
+
+              <Row>
             <table>
-              <tbody>
-                <th>
-                  <td>Word</td>
-                  <td>Count</td>
-                </th>
-
-                {this.state.freq.map(row => (
                 <tr>
-                  <td>{row.wordle}</td>
-                  <td>{row.value}</td>
+                  <th>Author</th>
+                  <td>{this.state.number.author}</td>
                 </tr>
-                ))
-                }               
-              </tbody>
-            </table>             
+                <tr>
+                  <th>Book</th>
+                  <td>{this.state.number.book}</td>
+                </tr>
+                <tr>
+                  <th>Headings</th>
+                  <td>{this.state.number.headings}</td>
+                </tr>
+                <tr>
+                  <th>First Verse</th>
+                  <td>{this.state.number.firstV}</td>
+                </tr>
+                <tr>
+                  <th>Topic</th>
+                  <td>{this.state.number.topic}</td>
+                </tr>
+                <tr>
+                  <th>Summary</th>
+                  <td>{this.state.number.sum}</td>
+                </tr>
+            </table>
           </Row>
 
-          <Row>
-            <Link to='/psalms'>Return to Psalms Home</Link>
+              <Row>
+                <Link to='/psalms'>Return to Psalms Home</Link>
+              </Row>
+            </Col>
           </Row>
+          <Footer></Footer>
         </Container>
       </div>
     )  
