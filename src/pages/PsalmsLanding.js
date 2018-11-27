@@ -1,43 +1,25 @@
 import React, {Component} from 'react';
-import {Container, Row} from 'reactstrap';
+import {Container, Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {PsButton} from '../components/PsButton';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Psalms.css';
+import PsHeader from '../components/PsHeader';
+import Footer from '../components/Footer';
 
 class PsalmsLanding extends Component {
 
   constructor(props) {
     super(props);
-    this.changePage = this.changePage.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   componentDidMount() {
-    let apiKey = 'fd8b3c5ed779240885a2d077adfdbd0fd6c3a25a';
-    const passage = 'John 11';
-    const queryURL = 'https://api.esv.org/v3/passage/text/';
-    const config = {
-      headers: {
-        'Authorization': apiKey
-      },
-      params : {
-        'q': passage,
-        'include-headings': false,
-        'include-footnotes': false,
-        'include-verse-numbers': false,
-        'include-short-copyright': false,
-        'include-passage-references': false
-      }
-    };
 
-    axios.get(queryURL, config).then((res) =>{
-      console.log(res.data.passages);
-    });
   }
 
-  changePage(id) {
-    <Link to='/psalmsCompare' />
-    console.log(id);
+  submitForm() {
+    
   }
 
   render() {
@@ -47,36 +29,61 @@ class PsalmsLanding extends Component {
     };
 
     return(
-      <div>
-      <Container>
-        <Row>
-          <h1>PsalmsLanding</h1>
+      <Container className='psalmContainer'>
+        <PsHeader psalmId="Comparisons" />
+        <Row className='psalmsContent'>
+          <Col>
+            <Row>
+              <h4>What is this site?</h4>
+              <p>How cool would it be, I thought, to graph the words from a psalm. I wanted to know if a particular psalm was God-centric or self-centric, and I though an actual word count would help with that.</p>
+            </Row>
+            <Row>
+              <h4>Click a Psalm to see the deets.</h4>
+              <ul className='allPsalms'>
+                {psalms.map((psalm) => {
+                  return(
+                    <li
+                    id={`psalm${psalm}`}
+                    key={psalm}
+                    className='psalmsList'
+                    >
+                    <Link to={`/psalm/${psalm}`}>{psalm}</Link>
+                    </li>     
+                  )})}
+              </ul>
+            </Row>
+            <Row>
+              <Col>
+                <Row>
+                  <h4>Compare Psalms</h4>
+                </Row>
+                <Row>
+                  <Col>
+                    <PsButton key='pageChange' id='psalmsCompare' changePage={this.changePage}>Psalms Comparison Chart</ PsButton>    
+                  </Col>
+                  <Col>
+                    <p>Compare two Psalms.</p>
+                    <Form>
+                      <FormGroup row>
+                        <Col sm={5} align='center'>
+                          <Label for='psalm1'>Psalm #1</Label>
+                          <Input type='number' name='psalm1' id='psalm1' placeholder='44' />
+                        </Col>
+                        <Col sm={5} align='center'>
+                          <Label for='psalm1'>Psalm #2</Label>
+                          <Input type='number' name='psalm2' id='psalm2' placeholder='131' />
+                        </Col>
+                      </FormGroup>
+                      <button type='submit' className='btn btn-primary' onClick={this.submitForm}>Compare these two</button>
+                    </Form>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Col>
         </Row>
-        <Row>
-          <p>How cool would it be, I thought, to graph the words from a psalm. I wanted to know if a particular psalm was God-centric or self-centric, and an actual word count would help with that.</p>
-        </Row>
-
-        <PsButton key='pageChange' id='psalmsCompare' changePage={this.changePage}>Psalms Comparison Chart</ PsButton>
-<ul>
-        {psalms.map((psalm) => {
-          return(
-            <li
-            id={`psalm${psalm}`}
-            key={psalm}
-            className='psalmsList'
-            >
-            <Link to={`/psalm/${psalm}`}>{psalm}</Link>
-            </li>     
-          )})}
-
-          </ul>
-
-        <Row>
-            <Link to="/">← Back to Authors</Link>
-        </Row>
-
+        <Footer></Footer>
       </Container>
-      </div>    
     )    
   }
 };

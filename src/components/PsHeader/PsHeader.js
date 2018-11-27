@@ -4,16 +4,22 @@ import { Link } from 'react-router-dom';
 import './PsHeader.css';
 
 const PsHeader = (props) => (
-  <Container>
-     <Row>
+  <div>
+     <Row className='psHeader fixedTop'>
       <Col>
         <h1>{`Psalm ${props.psalmId}`}</h1>
       </Col>
       <Col>
-        <Link to='/psalms'>Return to Psalms Home</Link>
+      <Row>
+        <ul className='psList'>
+          <li><Link to='/psalms'>Return to Psalms Home</Link></li>
+          <li><Link to='/PsalmsFAQ'>FAQs</Link></li>
+          <li><Link to="/">Kris's Portfolio</Link></li>
+        </ul>
+        </Row>
       </Col>
      </Row>
-   </Container>
+   </div>
 );
 
 export default PsHeader;

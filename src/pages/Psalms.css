@@ -3,7 +3,10 @@
   text-decoration: none;
   list-style-type: none;
   display: inline-block;
-  margin-right: 8px;
+  /* margin-right: 8px; */
+  width:37px;
+  margin-bottom:2.5px;
+  text-align: center;
 }
 .psalmsList a:hover{
   color:#D81E23;
@@ -19,5 +22,26 @@
   margin:0;
 }
 th, td{
-  /* text-align: center; */
+  text-align: left;
+  padding-left:5px;
+  padding-bottom: 0;
+}
+.wordTable{
+  /* align:center; */
+  width: inherit;
+  /* border: 1px solid black; */
+  padding: 2px;
+}
+.psalmLink{
+  color:black;
+}
+.psalmLink:hover{
+  color:#D81E23;
+}
+/* label{
+  color:red;
+  text-align: center;
+} */
+.allPsalms{
+
 }

@@ -1,6 +1,9 @@
-.fixed-top{
-  position:fixed;
-  top:0;
-  right:0;
-  left:0;
+.psHeader{
+  background-color: #D81E23;
+}
+.psList{
+  list-style: none;
+  text-align: right;
+  width: 90%;
+  margin:auto;
 }

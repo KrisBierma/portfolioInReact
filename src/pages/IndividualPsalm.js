@@ -174,43 +174,39 @@ class IndividualPsalm extends Component {
 
   render() {
     return(
-      <div>
-        <Container className='psalmContainer'>
-          {/* <Row>
-            <h1>{`Psalm ${this.state.psalmId}`}</h1>
-          </Row> */}
-          <PsHeader psalmId={this.state.psalmId} />
-          
-          <Row className='psalmsContent'>
-            <Col>
-              <Row>
-                <Col xs='6' sm='8'>
-                  <p>{this.state.wholeChapeter}</p>
-                </Col>
-                <Col>
-                  <table align='center'>
-                    <thead>
-                      <tr>
-                        <th>Word</th>
-                        <th>Count</th>
-                      </tr>
-                    </thead>
+      <Container className='psalmContainer'>
+        <PsHeader psalmId={this.state.psalmId} />
+        
+        <Row className='psalmsContent'>
+          <Col>
+            <Row>
+              <Col xs='6' sm='8'>
+                <p>{this.state.wholeChapeter}</p>
+              </Col>
+              <Col>
+                <table className='wordTable'>
+                  <thead>
+                    <tr>
+                      <th>Word</th>
+                      <th>Count</th>
+                    </tr>
+                  </thead>
 
-                    <tbody>
-                      {this.state.freq.map(row => (
-                      <tr key={row.wordle}>
-                        <td>{row.wordle}</td>
-                        <td>{row.value}</td>
-                      </tr>
-                      ))
-                      }               
-                    </tbody>
-                  </table>  
-                </Col>
-              </Row>
+                  <tbody>
+                    {this.state.freq.map(row => (
+                    <tr key={row.wordle}>
+                      <td>{row.wordle}</td>
+                      <td>{row.value}</td>
+                    </tr>
+                    ))
+                    }               
+                  </tbody>
+                </table>  
+              </Col>
+            </Row>
 
-              <Row>
-            <table>
+            <Row>
+              <table>
                 <tr>
                   <th>Author</th>
                   <td>{this.state.number.author}</td>
@@ -235,17 +231,12 @@ class IndividualPsalm extends Component {
                   <th>Summary</th>
                   <td>{this.state.number.sum}</td>
                 </tr>
-            </table>
-          </Row>
-
-              <Row>
-                <Link to='/psalms'>Return to Psalms Home</Link>
-              </Row>
-            </Col>
-          </Row>
-          <Footer></Footer>
-        </Container>
-      </div>
+              </table>
+            </Row>
+          </Col>
+        </Row>
+        <Footer></Footer>
+      </Container>
     )  
   }
 }
