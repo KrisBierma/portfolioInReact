@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {PsButton} from '../components/PsButton';
-import axios from 'axios';
+// import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Psalms.css';
 import PsHeader from '../components/PsHeader';
@@ -33,10 +33,10 @@ class PsalmsLanding extends Component {
         <PsHeader psalmId="Comparisons" />
         <Row className='psalmsContent'>
           <Col>
-            <Row>
+            {/* <Row>
               <h4>What is this site?</h4>
               <p>How cool would it be, I thought, to graph the words from a psalm. I wanted to know if a particular psalm was God-centric or self-centric, and I though an actual word count would help with that.</p>
-            </Row>
+            </Row> */}
             <Row>
               <h4>Click a Psalm to see the deets.</h4>
               <ul className='allPsalms'>

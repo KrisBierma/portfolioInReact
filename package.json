@@ -4,8 +4,10 @@
   "private": true,
   "homepage": "http://krisbierma.com",
   "dependencies": {
+    "@react-firebase/database": "^0.3.10",
     "animate.css": "^3.7.0",
     "axios": "^0.18.0",
+    "firebase": "^5.7.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",

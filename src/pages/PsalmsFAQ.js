@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-import {PsButton} from '../components/PsButton';
+// import {PsButton} from '../components/PsButton';
 import { Link } from 'react-router-dom';
 import './Psalms.css';
 import PsHeader from '../components/PsHeader';

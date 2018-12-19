@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Row } from 'reactstrap';
+import { Row } from 'reactstrap';
 
-const PsalmsComparison = () => {
-  <Container>
+const PsalmsComparison = () => (
+  // <Container>
     <Row>
       <h2>Psalms Comparison Chart</h2>
       <table>
@@ -16,7 +16,7 @@ const PsalmsComparison = () => {
         </tr>
       </table>
     </Row>
-  </Container>
-};
+  // </Container>
+);
 
 export default PsalmsComparison;

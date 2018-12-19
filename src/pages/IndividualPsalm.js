@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import axios from 'axios';
 import PsHeader from '../components/PsHeader';
 import psalms from '../psalms.json';
 import Footer from '../components/Footer';
+// import { FirebaseContext } from '../components/Firebase';
+import firebase from '../components/Firebase/firebase';
 
 class IndividualPsalm extends Component {
   constructor(props){
@@ -37,7 +39,15 @@ class IndividualPsalm extends Component {
     });
     // console.log(this.props.match.params.psalmId);
     // console.log(this);
+    const db = firebase.database();
+    db.ref('1').once('value').then(function(snapshot){
+      console.log('hi')
+    });
+    // <FirebaseContext.Consumer>
+    //   {firebase => console.log("hi")}
+    // </FirebaseContext.Consumer>    
     this.getPsalm();
+
   }
 
   // api to api.esv.org to get the current psalm
@@ -163,7 +173,7 @@ class IndividualPsalm extends Component {
   }
 
   renderWords(props){
-    const freq = this.state.freq;
+    // const freq = this.state.freq;
     return(    
       <tr>
         <td>{props.wordle}</td>
@@ -193,8 +203,8 @@ class IndividualPsalm extends Component {
                   </thead>
 
                   <tbody>
-                    {this.state.freq.map(row => (
-                    <tr key={row.wordle}>
+                    {this.state.freq.map((row, i) => (
+                    <tr key={`${row.wordle}.${i}`}>
                       <td>{row.wordle}</td>
                       <td>{row.value}</td>
                     </tr>
@@ -207,30 +217,32 @@ class IndividualPsalm extends Component {
 
             <Row>
               <table>
-                <tr>
-                  <th>Author</th>
-                  <td>{this.state.number.author}</td>
-                </tr>
-                <tr>
-                  <th>Book</th>
-                  <td>{this.state.number.book}</td>
-                </tr>
-                <tr>
-                  <th>Headings</th>
-                  <td>{this.state.number.headings}</td>
-                </tr>
-                <tr>
-                  <th>First Verse</th>
-                  <td>{this.state.number.firstV}</td>
-                </tr>
-                <tr>
-                  <th>Topic</th>
-                  <td>{this.state.number.topic}</td>
-                </tr>
-                <tr>
-                  <th>Summary</th>
-                  <td>{this.state.number.sum}</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <th>Author</th>
+                    <td>{this.state.number.author}</td>
+                  </tr>
+                  <tr>
+                    <th>Book</th>
+                    <td>{this.state.number.book}</td>
+                  </tr>
+                  <tr>
+                    <th>Headings</th>
+                    <td>{this.state.number.headings}</td>
+                  </tr>
+                  <tr>
+                    <th>First Verse</th>
+                    <td>{this.state.number.firstV}</td>
+                  </tr>
+                  <tr>
+                    <th>Topic</th>
+                    <td>{this.state.number.topic}</td>
+                  </tr>
+                  <tr>
+                    <th>Summary</th>
+                    <td>{this.state.number.sum}</td>
+                  </tr>
+                </tbody>
               </table>
             </Row>
           </Col>
