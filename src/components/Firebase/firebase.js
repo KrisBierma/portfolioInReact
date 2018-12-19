@@ -1,6 +1,5 @@
-// import app from 'firebase/app';
-// import 'firebase/database';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 
 const config = {
@@ -12,26 +11,6 @@ const config = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 };
 
-// class Firebase {
-  // constructor() {
-    firebase.initializeApp(config);
-    // const db = firebase.database();
-    // this.db = app.database();
-  // }
-// }
+  firebase.initializeApp(config);
 
 export default firebase;
-
-/* <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyB2sF2gkOWKZ5YQOMDpYvJOly0Q1Zl9wCg",
-    authDomain: "psalms-ffc9a.firebaseapp.com",
-    databaseURL: "https://psalms-ffc9a.firebaseio.com",
-    projectId: "psalms-ffc9a",
-    storageBucket: "psalms-ffc9a.appspot.com",
-    messagingSenderId: "652325704324"
-  };
-  firebase.initializeApp(config);
-</script> */

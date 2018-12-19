@@ -40,9 +40,16 @@ class IndividualPsalm extends Component {
     // console.log(this.props.match.params.psalmId);
     // console.log(this);
     const db = firebase.database();
-    db.ref('1').once('value').then(function(snapshot){
+    db.ref().once('value').then(function(snapshot){
       console.log('hi')
     });
+
+    const itemsRef = firebase.database().ref('items');
+    const item = {
+      title: 'this.state.currentItem',
+      user: 'this.state.username'
+    }
+    itemsRef.push(item);
     // <FirebaseContext.Consumer>
     //   {firebase => console.log("hi")}
     // </FirebaseContext.Consumer>    
