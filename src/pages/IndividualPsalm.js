@@ -41,6 +41,9 @@ class IndividualPsalm extends Component {
     // console.log(this.props.match.params.psalmId);
     // console.log(this);
     const db = firebase.database();
+    db.ref().once('value').then(function(s){
+      console.log(s)
+    })
     db.ref().once('child_added').then(function(snap){
       console.log(snap.val())
       console.log(snap.key) // the psalm number
@@ -55,12 +58,13 @@ class IndividualPsalm extends Component {
 
   // api to api.esv.org to get the current psalm
   getPsalm() {
-    let apiKey = 'fd8b3c5ed779240885a2d077adfdbd0fd6c3a25a';
+    // let apiKey = process.env.REACT_APP_ESV_API_KEY;
+    // console.log(process.env.REACT_APP_ESV_API_KEY)
     const passage = `Psalm ${this.state.psalmId}`;
     const queryURL = 'https://api.esv.org/v3/passage/text/';
     const config = {
       headers: {
-        'Authorization': apiKey
+        'Authorization': process.env.REACT_APP_ESV_API_KEY
       },
       params : {
         'q': passage,
