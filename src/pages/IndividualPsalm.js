@@ -30,31 +30,17 @@ class IndividualPsalm extends Component {
       psalms:psalms,
       number:psalms[this.props.match.params.psalmId-1]
     }, () => {
-      // console.log(this.state.psalmId);
-      // console.log(this.state.number)
-      // console.log(this.state.psalms[this.state.psalmId].author);
-      // console.log(this.state.number);
-      // console.log(psalms[this.state.psalmId])
-      // console.log(this.state.number.author);
     });
     // console.log(this.props.match.params.psalmId);
     // console.log(this);
     const db = firebase.database();
-    db.ref().once('value').then(function(snapshot){
-      console.log('hi')
+    db.ref().once('child_added').then(function(snap){
+      console.log(snap.val())
+      console.log(snap.key) // the psalm number
+      // console.log(snaps)
     });
-
-    const itemsRef = firebase.database().ref('items');
-    const item = {
-      title: 'this.state.currentItem',
-      user: 'this.state.username'
-    }
-    itemsRef.push(item);
-    // <FirebaseContext.Consumer>
-    //   {firebase => console.log("hi")}
-    // </FirebaseContext.Consumer>    
+   
     this.getPsalm();
-
   }
 
   // api to api.esv.org to get the current psalm
