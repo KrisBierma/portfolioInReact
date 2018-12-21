@@ -12,8 +12,8 @@ class App extends Component {
       <Router>
       <Switch>
         {/* <div> */}
-        <Route exact path='/' component={Portfolio} />
-        <Route exact path='/psalms' component={PsalmsLanding} />
+        <Route exact path={process.env.PUBLIC_URL + '/'} component={Portfolio} />
+        <Route exact path={process.env.PUBLIC_URL + '/psalms'} component={PsalmsLanding} />
         <Route exact path='/psalmsCompare' component={PsalmsComparison} />
         <Route exact path='/psalm/:psalmId' component={IndividualPsalm} /> 
         <Route exact path='/psalmsFAQ' component={psalmsFAQ} />
