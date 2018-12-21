@@ -135,7 +135,7 @@ class PsalmsLanding extends Component {
 
                 {/* just for data entry */}
                 <Row>
-                  <Form onSubmit={this.handleSubmit}>
+                  {/* <Form onSubmit={this.handleSubmit}>
                     <Input type='string' name='author' value={this.state.author} onChange = {this.handleChange} placeholder='Author' />
                     <Input type='string' name='book' value={this.state.book} onChange = {this.handleChange} placeholder='Book' />
                     <Input type='string' name='firstVerse' value={this.state.firstVerse} onChange= {this.handleChange} placeholder='first verse' />
@@ -145,7 +145,7 @@ class PsalmsLanding extends Component {
                     <Input type='string' name='topic' value={this.state.topic} onChange= {this.handleChange} placeholder='topic' />
 
                     <button type='submit' value='Submit'>Submit Data</button>
-                  </Form>
+                  </Form> */}
                 </Row>
               </Col>
             </Row>
