@@ -13,6 +13,13 @@ class IndividualPsalm extends Component {
     super(props);
     this.state = {
       psalmId: '',
+      author: '',
+      book: '',
+      firstVerse: '',
+      headings: '',
+      chapterNum: 0,
+      summary: '',
+      topic: '',
       wholeChapeter: '',
       freq:[],
       psalms,
@@ -42,6 +49,9 @@ class IndividualPsalm extends Component {
    
     this.getPsalm();
   }
+
+// change psalmId to chapterNum
+// get chapter info from db and fill in html
 
   // api to api.esv.org to get the current psalm
   getPsalm() {
