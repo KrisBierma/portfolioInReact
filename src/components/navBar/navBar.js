@@ -42,7 +42,8 @@ class NavbarComponent extends Component {
                 <NavItem>
                   <NavLink onClick={this.toggle} href="#bio">Bio</NavLink>
                 </NavItem>
-                <NavItem className="pipe"> | </NavItem>
+                <NavItem className="pipe">
+                  <NavLink href="/psalms"> | </NavLink></NavItem>
                 <NavItem>
                   <NavLink onClick={this.toggle} href="#contact">Contact</NavLink>
                 </NavItem>
