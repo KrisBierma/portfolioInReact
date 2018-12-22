@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://www.krisbierma.com",
+  "homepage": "http://krisbierma.com",
   "dependencies": {
     "@react-firebase/database": "^0.3.10",
     "animate.css": "^3.7.0",

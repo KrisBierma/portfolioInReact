@@ -11,15 +11,16 @@ console.log(process.env.PUBLIC_URL)
 class App extends Component {
   render() {
     return (
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      // <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
       <Switch>
         {/* <div> */}
         <Route exact path='/' component={Portfolio} />
-        <Route exact path='/psalms' component={PsalmsLanding} />
+        <Route exact path={process.env.PUBLIC_URL+'/psalms'} component={PsalmsLanding} />
         <Route exact path='/psalmsCompare' component={PsalmsComparison} />
         <Route exact path='/psalm/:psalmId' component={IndividualPsalm} /> 
         <Route exact path='/psalmsFAQ' component={psalmsFAQ} />
-        <Route path='*' component={Portfolio} />
+        <Route path='*' component={PsalmsLanding} />
         {/* <Route exact path='/psalm/:psalmId' render={(props) => (    <IndividualPsalm {...props} />)} /> */}
         {/* <Route path='*' component={Portfolio} /> */}
         {/* <Redirect path */}
