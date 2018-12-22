@@ -14,7 +14,7 @@ class App extends Component {
       <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         {/* <div> */}
-        {/* <Route exact path='/' component={Portfolio} /> */}
+        <Route exact path='/' component={Portfolio} />
         <Route exact path='/psalms' component={PsalmsLanding} />
         <Route exact path='/psalmsCompare' component={PsalmsComparison} />
         <Route exact path='/psalm/:psalmId' component={IndividualPsalm} /> 
