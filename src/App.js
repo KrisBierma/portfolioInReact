@@ -18,8 +18,8 @@ class App extends Component {
         {/* <Route exact path='/psalms' component={PsalmsLanding} />
         <Route exact path='/psalmsCompare' component={PsalmsComparison} />
         <Route exact path='/psalm/:psalmId' component={IndividualPsalm} /> 
-        <Route exact path='/psalmsFAQ' component={psalmsFAQ} />
-        <Route path='*' component={PsalmsLanding} /> */}
+        <Route exact path='/psalmsFAQ' component={psalmsFAQ} /> */}
+        <Route path='*' component={PsalmsLanding} />
         {/* <Route exact path='/psalm/:psalmId' render={(props) => (    <IndividualPsalm {...props} />)} /> */}
         {/* <Route path='*' component={Portfolio} /> */}
         {/* <Redirect path */}
