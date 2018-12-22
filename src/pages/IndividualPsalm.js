@@ -49,7 +49,8 @@ class IndividualPsalm extends Component {
       console.log(snap.key) // the psalm number
       // console.log(snaps)
     });
-   
+    console.log((process.env))
+
     this.getPsalm();
   }
 

@@ -6,6 +6,8 @@ import IndividualPsalm from './pages/IndividualPsalm';
 import PsalmsComparison from './pages/PsalmsComparison';
 import psalmsFAQ from './pages/PsalmsFAQ';
 // do i need switch rom react router?
+
+console.log(process.env.PUBLIC_URL)
 class App extends Component {
   render() {
     return (
