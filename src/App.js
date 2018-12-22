@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Router, Route, Redirect, Switch } from 'react-router-dom';
 import PsalmsLanding from './pages/PsalmsLanding';
 import Portfolio from './pages/Portfolio';
 import IndividualPsalm from './pages/IndividualPsalm';
@@ -11,7 +11,7 @@ console.log(process.env.PUBLIC_URL)
 class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         {/* <div> */}
         <Route exact path='/' component={Portfolio} />
@@ -25,7 +25,7 @@ class App extends Component {
         {/* <Redirect path */}
       {/* </div> */}
       </Switch>      
-      </Router>
+      </BrowserRouter>
     )
   }
 }
