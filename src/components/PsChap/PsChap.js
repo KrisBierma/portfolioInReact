@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'reactstrap';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 class PsChap extends Component {
   constructor(props){
     super(props);
     this.state = {
-      // author: '',
-      // book: '',
-      // firstVerse: '',
-      // headings: '',
       chapterNum: this.props.chapterNum,
-      // summary: '',
-      // topic: '',
       wholeChapeter: '',
-      freq:[],
-      individualPs: true
+      freq:[]
     }
     this.getPsalm = this.getPsalm.bind(this);
     this.getWords = this.getWords.bind(this);
     this.countWords = this.countWords.bind(this);
     this.sortWords = this.sortWords.bind(this);
-    this.renderWords = this.renderWords.bind(this); 
-    // // this.arrangeInfo = this.arrangeInfo.bind(this);
+  }
+
+  componentDidMount() {
+    // console.log(this.props.match.params);
+    this.getPsalm();
   }
 
   // api to api.esv.org to get the current psalm
@@ -56,6 +51,7 @@ class PsChap extends Component {
     });
   }
 
+  // need to not lowercase I, Lord, God
 
   // put api result into array, filter out unwanted words 
   getWords(string) {
@@ -146,69 +142,15 @@ class PsChap extends Component {
 
     // sort words from greatest to least
     newFreq.sort(function(a,b){return b.value-a.value});
-    this.setState({freq:newFreq});
-    this.getPsWordCount(newFreq);
-  }
-
-  // renderWords(props){
-  //   // const freq = this.state.freq;
-  //   return(    
-  //     <tr>
-  //       <td>{props.wordle}</td>
-  //       <td>{props.value}</td>
-  //     </tr>
-  //   )
-  // } 
-  
-  // gets the freq and sends it to parent through callback function
-  getPsWordCount(e) {
-    this.props.getPsWordCount(params);
+    // call this function in the parent (individualPsalm) which sends the freq array back to parent to use in pswordCount
+    this.props.getPsWordCount(newFreq);
   }
 
   render() {
-        return(
-
-    // let content = <div>hi</div>;
-    // find out who's calling this component: the individual psalm page or the comparision page
-    // individual psalm page puts word count next to chapter; comparison puts word count below reading
-    // if (this.state.individualPs) {
-      // content = 
-      // <div>
-        <Col xs='6' sm='8'>
-          <p>{this.state.wholeChapeter}</p>
-        </Col>
-        /* <Col>
-          <table className='wordTable'>
-            <thead>
-              <tr>
-                <th>Word</th>
-                <th>Count</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {this.state.freq.map((row, i) => (
-              <tr key={`${row.wordle}.${i}`}>
-                <td>{row.wordle}</td>
-                <td>{row.value}</td>
-              </tr>
-              ))
-              }               
-            </tbody>
-          </table>  
-        </Col> */
-      // </div>
-    // }
-    // else {
-      // content =
-      // <div>bye</div>
-    // }
-    // return (content);
-    // return(
-      
+    return(
+      <p>{this.state.wholeChapeter}</p>
     )
   }
-
 }
 
 export default PsChap;

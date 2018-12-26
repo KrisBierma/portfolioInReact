@@ -37,7 +37,7 @@ class PsalmData extends Component {
       const ps = s.val()[key];
 
       that.setState({
-        author: ps.author || '',
+        author: ps.author,
         book: ps.book,
         firstVerse: ps.firstVerse,
         headings: ps.headings,
@@ -57,37 +57,34 @@ class PsalmData extends Component {
 
   render() {
     return(
-      <div>
-        <h1>{this.props.chapterNum}</h1>
-        <table>
-          <tbody>
-            <tr>
-              <th>Author</th>
-              <td>{this.state.author}</td>
-            </tr>
-            <tr>
-              <th>Book</th>
-              <td>{this.state.book}</td>
-            </tr>
-            <tr>
-              <th>Headings</th>
-              <td>{this.state.headings}</td>
-            </tr>
-            <tr>
-              <th>First Verse</th>
-              <td>{this.state.firstVerse}</td>
-            </tr>
-            <tr>
-              <th>Topic</th>
-              <td>{this.state.topic}</td>
-            </tr>
-            <tr>
-              <th>Summary</th>
-              <td>{this.state.summary}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <tbody>
+          <tr>
+            <th>Author</th>
+            <td>{this.state.author}</td>
+          </tr>
+          <tr>
+            <th>Book</th>
+            <td>{this.state.book}</td>
+          </tr>
+          <tr>
+            <th>Headings</th>
+            <td>{this.state.headings}</td>
+          </tr>
+          <tr>
+            <th>First Verse</th>
+            <td>{this.state.firstVerse}</td>
+          </tr>
+          <tr>
+            <th>Topic</th>
+            <td>{this.state.topic}</td>
+          </tr>
+          <tr>
+            <th>Summary</th>
+            <td>{this.state.summary}</td>
+          </tr>
+        </tbody>
+      </table>
     )
   }
 
