@@ -108,8 +108,6 @@ class App extends Component {
   componentDidMount() {
     this.setState({projects:projects});
     window.addEventListener('scroll', this.handleScroll);
-    console.log(process.env.PUBLIC_URL)
-    console.log('hi')
   };
 
   componentWillUnmount() {

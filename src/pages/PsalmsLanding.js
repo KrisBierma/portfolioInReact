@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Container, Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {PsButton} from '../components/PsButton';
 // import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './Psalms.css';
 import PsHeader from '../components/PsHeader';
 import Footer from '../components/Footer';
@@ -17,11 +17,13 @@ class PsalmsLanding extends Component {
       book: '',
       firstVerse: '',
       headings: '',
-      chapterNum: 0,
+      chapterNum: '',
       summary: '',
       topic: '',
-      psalm1: 1,
-      psalm2: 2
+      psalm1: '',
+      psalm2: '',
+      invalidMsg: '',
+      changePage: false
     }
     this.submitForm = this.submitForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -35,12 +37,26 @@ class PsalmsLanding extends Component {
   // comapre two forms submission button
   submitForm(e) {
     e.preventDefault();
-    // get the two psalms and pass and switch to comparision page
 
-    this.setState({
-      psalm1: 1,
-      psalm2: 2
-    }) 
+    // check for validity
+    if (this.state.psalm1 < 1 || this.state.psalm1 > 150 || this.state.psalm2 < 1 || this.state.psalm2 > 150) {
+      this.setState({
+        invalidMsg: 'Choose a psalm between 1 and 150.',
+        psalm1: '',
+        psalm2: ''
+      })
+    }
+    else if (this.state.psalm1 === this.state.psalm2) {
+      this.setState({
+        invalidMsg: 'Choose two different psalms to compare.',
+        psalm1: '',
+        psalm2: ''
+      })
+    }
+    // pass the requested psalms as props and switch to comparision page
+    else {
+      this.setState({changePage: true})
+    }
   }
 
   // after each keystroke, update state with value of form
@@ -82,17 +98,21 @@ class PsalmsLanding extends Component {
       psalms.push(i);
     };
 
+    if (this.state.changePage === true){
+      return <Redirect to={`/psalmsCompare/${this.state.psalm1}&${this.state.psalm2}`} />
+    }
+
     return(
       <Container className='psalmContainer'>
         <PsHeader psalmId="Comparisons" />
         <Row className='psalmsContent'>
           <Col>
             {/* <Row>
-              <h4>What is this site?</h4>
+              <h5>What is this site?</h5>
               <p>How cool would it be, I thought, to graph the words from a psalm. I wanted to know if a particular psalm was God-centric or self-centric, and I though an actual word count would help with that.</p>
             </Row> */}
             <Row>
-              <h4>Click a Psalm to see the deets.</h4>
+              <h5>Click a Psalm to see the deets.</h5>
               <ul className='allPsalms'>
                 {psalms.map((psalm) => {
                   return(
@@ -107,35 +127,41 @@ class PsalmsLanding extends Component {
               </ul>
             </Row>
             <Row>
+              {/* compare all psalms */}
               <Col>
                 <Row>
-                  <h4>Compare Psalms</h4>
+                    <h5>Compare all the Psalms</h5>
                 </Row>
                 <Row>
-                  <Col>
-                    <PsButton key='pageChange' id='psalmsCompare' value={this.state.author} changePage={this.changePage}>Psalms Comparison Chart</ PsButton>    
-                  </Col>
-                  <Col>
-                    <p>Compare two Psalms.</p>
-                    <Form>
-                      <FormGroup row>
-                        <Col sm={5} align='center'>
-                          <Label for='psalm1'>Psalm #1</Label>
-                          <Input type='number' name='psalm1' onChange={this.handleChange} placeholder='44' />
-                        </Col>
-                        <Col sm={5} align='center'>
-                          <Label for='psalm2'>Psalm #2</Label>
-                          <Input type='number' name='psalm2' onChange={this.handleChange} placeholder='131' />
-                        </Col>
-                      </FormGroup>
-                      <button type='submit' className='btn btn-primary' onClick={this.submitForm}>Compare these two</button>
-                    </Form>
-                  </Col>
+                    <PsButton id='psalmsCompare' value={this.state.author} changePage={this.changePage}>Psalms Comparison Chart</ PsButton>    
                 </Row>
-
+              </Col>
+              {/* compare two psalms */}
+              <Col>
+                <Row>
+                  <p>Compare two Psalms.</p>
+                </Row>
+                <Row>
+                  <Form>
+                    <FormGroup row>
+                      <Col sm={5} align='center'>
+                        <Label for='psalm1'>Psalm #1</Label>
+                        <Input type='number' name='psalm1' value={this.state.psalm1} onChange={this.handleChange} placeholder='44' />
+                      </Col>
+                      <Col sm={5} align='center'>
+                        <Label for='psalm2'>Psalm #2</Label>
+                        <Input type='number' name='psalm2' value={this.state.psalm2} onChange={this.handleChange} placeholder='131' title='A psalm between 1 and 150' />
+                      </Col>
+                    </FormGroup>
+                    <p id='invalidMsg'>{this.state.invalidMsg}</p>
+                    <button type='submit' className='btn btn-primary' onClick={this.submitForm}>Compare these two</button>
+                  </Form>
+                </Row>
+              </Col>
+            </Row>
                 {/* just for data entry */}
                 <Row>
-                  {/* <Form onSubmit={this.handleSubmit}>
+                  <Form onSubmit={this.handleSubmit}>
                     <Input type='string' name='author' value={this.state.author} onChange = {this.handleChange} placeholder='Author' />
                     <Input type='string' name='book' value={this.state.book} onChange = {this.handleChange} placeholder='Book' />
                     <Input type='string' name='firstVerse' value={this.state.firstVerse} onChange= {this.handleChange} placeholder='first verse' />
@@ -145,10 +171,8 @@ class PsalmsLanding extends Component {
                     <Input type='string' name='topic' value={this.state.topic} onChange= {this.handleChange} placeholder='topic' />
 
                     <button type='submit' value='Submit'>Submit Data</button>
-                  </Form> */}
+                  </Form>
                 </Row>
-              </Col>
-            </Row>
           </Col>
         </Row>
         <Footer></Footer>
