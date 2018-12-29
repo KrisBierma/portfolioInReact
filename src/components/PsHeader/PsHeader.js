@@ -7,7 +7,7 @@ const PsHeader = (props) => (
   <div>
      <Row className='psHeader fixedTop'>
       <Col>
-        <h1>{`Psalm ${props.chapterNum}`}</h1>
+        <h1>{props.heading}</h1>
       </Col>
       <Col>
       <Row>

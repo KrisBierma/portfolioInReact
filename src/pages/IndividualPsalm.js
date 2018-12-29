@@ -37,7 +37,7 @@ class IndividualPsalm extends Component {
   render() {
     return(
       <Container className='psalmContainer'>
-        <PsHeader chapterNum={this.state.chapterNum} />
+        <PsHeader heading={`Psalm ${this.state.chapterNum}`} />
         
         <Row className='psalmsContent'>
           <Col>

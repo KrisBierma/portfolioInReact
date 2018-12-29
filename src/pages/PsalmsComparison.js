@@ -33,36 +33,37 @@ class PsalmsComparison extends Component {
     console.log(this.state.psalm1)
     return(
     <Container className='psalmContainer'>
-      <PsHeader psalmId={`${this.state.psalm1} and ${this.state.psalm2}`} />
+      <PsHeader heading={`Psalms ${this.state.psalm1} and ${this.state.psalm2}`} />
 
       <Row className='psalmsContent'>
-        {/* first psalm */}
         <Col>
-          <p>Psalm {this.state.psalm1}</p>
           <Row>
-            <PsChap chapterNum={this.state.psalm1} getPsWordCount={this.getPsWordCount} />
+            <Col>
+              <p>Psalm {this.state.psalm1}</p>
+              <PsChap chapterNum={this.state.psalm1} getPsWordCount={this.getPsWordCount} />
+            </Col>
+            <Col>
+              <p>Psalm {this.state.psalm1}</p>
+              <PsChap chapterNum={this.state.psalm2} getPsWordCount={this.getPsWordCount} />
+            </Col>
           </Row>
           <Row>
-            <PsWordCount freq={this.state.freq}/>
+            <Col>
+              <PsWordCount freq={this.state.freq}/>
+            </Col>
+            <Col>
+              <PsWordCount freq={this.state.freq}/>
+            </Col>
           </Row>
           <Row>
-            <PsalmData chapterNum={this.state.psalm1} />
-          </Row>
+            <Col>
+              <PsalmData chapterNum={this.state.psalm1} />
+            </Col>
+            <Col>
+              <PsalmData chapterNum={this.state.psalm2} />
+            </Col>
+          </Row>       
         </Col>
-        {/* second psalm */}
-        <Col>          
-        <p>Psalm {this.state.psalm1}</p>
-          <Row>
-            <PsChap chapterNum={this.state.psalm2} getPsWordCount={this.getPsWordCount} />
-          </Row>
-          <Row>
-            <PsWordCount freq={this.state.freq}/>
-          </Row>
-          <Row>
-            <PsalmData chapterNum={this.state.psalm2} />
-          </Row>
-        </Col>
-
       </Row>
       <Footer></Footer>
   </Container>
