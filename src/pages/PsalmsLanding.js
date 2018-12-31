@@ -23,11 +23,13 @@ class PsalmsLanding extends Component {
       psalm1: '',
       psalm2: '',
       invalidMsg: '',
-      changePage: false
+      changePage: false,
+      changePage2: false
     }
     this.submitForm = this.submitForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
   componentDidMount() {
@@ -92,14 +94,23 @@ class PsalmsLanding extends Component {
     });
   }
 
+  // change page to compare all psalms
+  changePage() {
+    this.setState({changePage2: true})
+  }
+
   render() {
     const psalms = [];
     for (let i=1; i<151; i++) {
       psalms.push(i);
     };
 
+    // this.state.changePage compares 2 psalms; changePage2 compare all psalms
     if (this.state.changePage === true){
       return <Redirect to={`/psalmsCompare/${this.state.psalm1}&${this.state.psalm2}`} />
+    }
+    else if (this.state.changePage2){
+      return <Redirect to = {`/psalmsCompareAll`} />
     }
 
     return(
@@ -107,10 +118,6 @@ class PsalmsLanding extends Component {
         <PsHeader psalmId="Comparisons" />
         <Row className='psalmsContent'>
           <Col>
-            {/* <Row>
-              <h5>What is this site?</h5>
-              <p>How cool would it be, I thought, to graph the words from a psalm. I wanted to know if a particular psalm was God-centric or self-centric, and I though an actual word count would help with that.</p>
-            </Row> */}
             <Row>
               <h5>Click a Psalm to see the deets.</h5>
               <ul className='allPsalms'>
@@ -133,7 +140,9 @@ class PsalmsLanding extends Component {
                     <h5>Compare all the Psalms</h5>
                 </Row>
                 <Row>
-                    <PsButton id='psalmsCompare' value={this.state.author} changePage={this.changePage}>Psalms Comparison Chart</ PsButton>    
+                  <PsButton id='psalmsCompare' value={this.state.author} changePage={this.changePage}>Compare All the Psalms</ PsButton>    
+                  {/* <button className='btn btn-primary' onClick={this.submitForm}>Compare these two</button> */}
+
                 </Row>
               </Col>
               {/* compare two psalms */}
