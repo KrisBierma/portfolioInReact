@@ -98,7 +98,7 @@ class PsalmsCompareAll extends Component {
       return <Redirect to={`/psalmsCompareTopic`} />
     }
 
-    console.log(this.props)
+    // console.log(this.props)
 
 
     return(
