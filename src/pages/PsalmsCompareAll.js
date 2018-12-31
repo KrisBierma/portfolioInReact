@@ -6,6 +6,7 @@ import PsHeader from '../components/PsHeader';
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
 import { Redirect } from 'react-router-dom';
+import { PsButton } from '../components/PsButton';
 
 class PsalmsCompareAll extends Component {
   constructor(props){
@@ -15,10 +16,11 @@ class PsalmsCompareAll extends Component {
         columns:[],
         data:[],
         changePage:false,
-        chapterNum:''
+        chapterNum:'',
+        id:''
       }
     this.renderTable=this.renderTable.bind(this);
-    this.changeToSpecificPsalm=this.changeToSpecificPsalm.bind(this);
+    this.changePage=this.changePage.bind(this);
   }
 
   componentDidMount(){
@@ -62,7 +64,7 @@ class PsalmsCompareAll extends Component {
           {Header: 'Chapter', accessor:'chapter', minWidth:65, maxWidth:75, id: 'row'},
           {Header: 'Book', accessor:'book', minWidth:65, maxWidth:75},
           {Header: 'Author', accessor:'author'},
-          {Header: 'First Verse', accessor:'firstV', minWidth:150,
+          {Header: 'First Verse', accessor:'firstV', minWidth:250, maxWidth:350,
             style:{
               width: "100%",
               height: "100%",
@@ -77,53 +79,69 @@ class PsalmsCompareAll extends Component {
   }
 // make frozen true for top header row
 
-
-  changeToSpecificPsalm() {
-    console.log('hi')
+  // linked to two buttons (author info and topic info)
+  changePage(props) {
+    this.setState({changePage:true, id:props})
   }
 
   render(){
     // console.log(this.state.everything)
     // console.log(this.state.columns)
     // console.log(this.state.changePage)
-    if (this.state.changePage) {
+    if (this.state.changePage && this.state.id==='specificPsalm') {
       return <Redirect to={`/psalm/${this.state.chapterNum}`} />
     }
+    else if (this.state.changePage && this.state.id==='authors') {
+      return <Redirect to={`/psalmsCompareAuthor`} />
+    }
+    else if (this.state.changePage && this.state.id==='topics') {
+      return <Redirect to={`/psalmsCompareTopic`} />
+    }
+
+    console.log(this.props)
+
 
     return(
-      <Container>
+      <Container className='psalmContainer'>
         <PsHeader heading='Compare All' />
-        <ReactTable 
-          data={this.state.everything} 
-          columns={this.state.columns} 
-          showPagination={false} 
-          minRows={0} 
-          isExpanded={true} 
-          className='-highlight -striped'
-          getTableProps={(state,rowInfo, column, instance, row, indexKey) => {
-            return {
-              // onScroll: e => {
-              //   if (this.tableScrollTop === e.target.scrollTop) {
-              //     let left = e.target.scrollLeft > 0 ? e.target.scrollLeft : 0;
-              //     // $(".ReactTable .rt-tr .frozen").css({ left: left });
-              //   } else {
-              //     this.tableScrollTop = e.target.scrollTop;
-              //   }
-              // }
-            };
-          }}
-          getTdProps={(state, rowInfo, column, instance) => {
-            return {
-              onClick: (e) => {
-                // console.log(instance);
-                console.log(rowInfo.original.chapter)
-                // console.log(column)
-                const chapterNum = rowInfo.original.chapter;
-                this.setState({chapterNum:chapterNum, changePage:true})
+        <div className='compareTableDiv'>
+          <div className='compareAllButtonDiv'>
+            <p>Click a table heading to sort or...</p>
+            <PsButton changePage={this.changePage} id='authors'>get detailed author comparisons</PsButton>
+            <PsButton changePage={this.changePage} id='topics'>get detailed topic info</PsButton>
+          </div>
+          <ReactTable 
+            data={this.state.everything} 
+            columns={this.state.columns} 
+            showPagination={false} 
+            minRows={0} 
+            isExpanded={true} 
+            className='-highlight -striped compareTable'
+            getTableProps={(state,rowInfo, column, instance, row, indexKey) => {
+              return {
+                // onScroll: e => {
+                //   if (this.tableScrollTop === e.target.scrollTop) {
+                //     let left = e.target.scrollLeft > 0 ? e.target.scrollLeft : 0;
+                //     // $(".ReactTable .rt-tr .frozen").css({ left: left });
+                //   } else {
+                //     this.tableScrollTop = e.target.scrollTop;
+                //   }
+                // }
+              };
+            }}
+            getTdProps={(state, rowInfo, column, instance) => {
+              return {
+                onClick: (e) => {
+                  // console.log(instance);
+                  console.log(rowInfo.original.chapter)
+                  // console.log(column)
+                  const chapterNum = rowInfo.original.chapter;
+                  this.setState({chapterNum:chapterNum, changePage:true, id:'specificPsalm'})
+                }
               }
-            }
-          }}
-          />
+            }}
+            />
+          </div>
         <Footer></Footer>
       </Container>
     )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import axios from 'axios';
+// import axios from 'axios';
 import PsHeader from '../components/PsHeader';
 import Footer from '../components/Footer';
 // import firebase from '../components/Firebase/firebase';

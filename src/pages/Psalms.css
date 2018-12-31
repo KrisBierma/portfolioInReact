@@ -45,3 +45,16 @@ th, td{
 .allPsalms{
 
 }
+.compareTableDiv{
+  /* width:90%; */
+  margin:20px;
+}
+.compareTable{
+
+}
+.compareAllButtonDiv{
+  margin:20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

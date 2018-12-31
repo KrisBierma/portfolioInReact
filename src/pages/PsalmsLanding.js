@@ -105,6 +105,8 @@ class PsalmsLanding extends Component {
       psalms.push(i);
     };
 
+    console.log(this.props)
+
     // this.state.changePage compares 2 psalms; changePage2 compare all psalms
     if (this.state.changePage === true){
       return <Redirect to={`/psalmsCompare/${this.state.psalm1}&${this.state.psalm2}`} />
