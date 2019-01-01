@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Footer from '../components/Footer';
-import { Col, Row, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 import PsHeader from '../components/PsHeader';
 import firebase from '../components/Firebase/firebase';
 import { PieChart } from 'react-easy-chart';

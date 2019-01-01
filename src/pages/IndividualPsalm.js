@@ -31,7 +31,11 @@ class IndividualPsalm extends Component {
 
   // callback in parent, sent as props to PsChap child to get freq array to bring back here to state to then send to child pswordcount
   getPsWordCount(params) {
-    this.setState({freq: params})
+    console.log(params)
+    this.setState({
+      freq: params[0],
+      count: params[1]
+    })
   }
 
   render() {

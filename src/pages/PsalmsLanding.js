@@ -20,6 +20,7 @@ class PsalmsLanding extends Component {
       chapterNum: '',
       summary: '',
       topic: '',
+      wordCount: '',
       psalm1: '',
       psalm2: '',
       invalidMsg: '',
@@ -80,7 +81,8 @@ class PsalmsLanding extends Component {
       headings: this.state.headings, 
       chapterNum: this.state.chapterNum, 
       summary: this.state.summary, 
-      topic: this.state.topic
+      topic: this.state.topic,
+      wordCount: this.state.wordCount
     });
     // reset form
     this.setState({
@@ -90,7 +92,8 @@ class PsalmsLanding extends Component {
       headings: '',
       chapterNum: '',
       summary: '',
-      topic: ''
+      topic: '',
+      wordCount: ''
     });
   }
 
@@ -105,7 +108,7 @@ class PsalmsLanding extends Component {
       psalms.push(i);
     };
 
-    console.log(this.props)
+    // console.log(this.props)
 
     // this.state.changePage compares 2 psalms; changePage2 compare all psalms
     if (this.state.changePage === true){
@@ -180,6 +183,7 @@ class PsalmsLanding extends Component {
                     <Input type='number' name='chapterNum' value={this.state.chapterNum} onChange= {this.handleChange} placeholder='chapter' />
                     <Input type='string' name='summary' value={this.state.summary} onChange= {this.handleChange} placeholder='summary' />
                     <Input type='string' name='topic' value={this.state.topic} onChange= {this.handleChange} placeholder='topic' />
+                    <Input type='number' name='wordCount' value={this.state.wordCount} onChange= {this.handleChange} placeholder='word count' />
 
                     <button type='submit' value='Submit'>Submit Data</button>
                   </Form>

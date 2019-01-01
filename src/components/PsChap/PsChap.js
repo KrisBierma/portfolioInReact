@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Row } from 'reactstrap';
+// import { Col, Row } from 'reactstrap';
 import axios from 'axios';
 
 class PsChap extends Component {
@@ -8,11 +8,12 @@ class PsChap extends Component {
     this.state = {
       chapterNum: this.props.chapterNum,
       wholeChapeter: '',
-      freq:[]
+      freq:[],
+      count:''
     }
     this.getPsalm = this.getPsalm.bind(this);
     this.getWords = this.getWords.bind(this);
-    this.countWords = this.countWords.bind(this);
+    this.countFreqOfWords = this.countFreqOfWords.bind(this);
     this.sortWords = this.sortWords.bind(this);
   }
 
@@ -49,11 +50,34 @@ class PsChap extends Component {
       this.setState({wholeChapeter: res.data.passages[0]});
       this.getWords(this.state.wholeChapeter);
     });
+
+    // just gets first verse
+    const passage2 = `Psalm ${this.state.chapterNum}:1`;
+    const config2 = {
+      headers: {
+        'Authorization': process.env.REACT_APP_ESV_API_KEY
+      },
+      params : {
+        'q': passage2,
+        'include-headings': false,
+        'include-footnotes': false,
+        'include-verse-numbers': false,
+        'include-short-copyright': false,
+        'include-passage-references': false,
+        'indent-poetry': false,
+        'indent-paragraphs': 0
+      }
+    };
+    axios.get(queryURL, config2).then((res) =>{
+      // console.log(res.data);
+      console.log(res.data.passages[0]);
+    });
   }
 
   // need to not lowercase I, Lord, God
 
   // put api result into array, filter out unwanted words 
+  // also counts words to find length of psalm
   getWords(string) {
     // replace . with spaces. Split string at spaces into individual words in an array. Start a new array of objects to hold words and their frequency.
     const words = string.toLowerCase().replace(/[.,;!?]/g, '').split(/\s/);
@@ -76,12 +100,15 @@ class PsChap extends Component {
     }
   )
     // console.log(words)
-    this.setState({freq: words});
-    this.countWords();
+    this.setState({
+      freq: words,
+      count: string.split(' ').length
+    });
+    this.countFreqOfWords();
   }
 
   // count the frequency of words in the psalm
-  countWords() {
+  countFreqOfWords() {
     const words = this.state.freq;
     // console.log(words)
     const freq=[];
@@ -143,7 +170,8 @@ class PsChap extends Component {
     // sort words from greatest to least
     newFreq.sort(function(a,b){return b.value-a.value});
     // call this function in the parent (individualPsalm) which sends the freq array back to parent to use in pswordCount
-    this.props.getPsWordCount(newFreq);
+    const data = [newFreq, this.state.count]
+    this.props.getPsWordCount(data);
   }
 
   render() {

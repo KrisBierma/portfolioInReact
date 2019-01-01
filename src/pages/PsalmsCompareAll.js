@@ -49,7 +49,8 @@ class PsalmsCompareAll extends Component {
           author: c.author,
           firstV: c.firstVerse,
           topics: c.topic,
-          headings: c.headings
+          headings: c.headings,
+          wordCount: c.wordCount
         };
 
         // push the data into the array of all chapters
@@ -72,7 +73,8 @@ class PsalmsCompareAll extends Component {
           }},
           {Header: 'Topics', accessor:'topics', style:{whiteSpace: 'normal'}},
           {Header: 'Headings', accessor:'headings', style:{whiteSpace:
-          'normal'}}      
+          'normal'}},
+          {Header: 'Word Count', accessor:'wordCount'},    
         ]
       })
     });

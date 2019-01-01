@@ -25,12 +25,10 @@ class PsalmsComparison extends Component {
 
   // callback for child (psChap) to call to get data from it, save it here (the parent) and have another child (psWordCount) call it
   getPsWordCount(params){
-    console.log('hi')
     this.setState({freq: params});
   }
 
   render() {
-    console.log(this.state.psalm1)
     return(
     <Container className='psalmContainer'>
       <PsHeader heading={`Psalms ${this.state.psalm1} and ${this.state.psalm2}`} />

@@ -26,25 +26,27 @@ class PsalmData extends Component {
     let key;
     
     db.ref().orderByChild('chapterNum').equalTo(this.props.chapterNum).once('child_added', function(s){
-      console.log(s.key)
+      // console.log(s.key)
       key = s.key;
     })
 
     db.ref().once('value').then(function(s){
-      console.log(s.val()); // gives everything
-      console.log(s.val()[key]);
+      // console.log(s.val()); // gives everything
+      // console.log(s.val()[key]);
 
       const ps = s.val()[key];
 
-      that.setState({
-        author: ps.author,
-        book: ps.book,
-        firstVerse: ps.firstVerse,
-        headings: ps.headings,
-        chapterNum: ps.chapterNum,
-        summary: ps.summary,
-        topic: ps.topic
-      });
+      if (ps !== undefined) {
+        that.setState({
+          author: ps.author,
+          book: ps.book,
+          firstVerse: ps.firstVerse,
+          headings: ps.headings,
+          chapterNum: ps.chapterNum,
+          summary: ps.summary,
+          topic: ps.topic
+        });        
+      }
 
     });
     // db.ref().once('child_added').then(function(snap){

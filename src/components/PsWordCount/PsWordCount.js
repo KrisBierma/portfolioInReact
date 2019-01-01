@@ -1,6 +1,5 @@
 // gets array of words from sibling component PsChap.js (via parent individualPsalm's state) to put into table
 import React from 'react';
-import { Col } from 'reactstrap';
 
 const PsWordCount = (props) => (
   <table className='wordTable'>
