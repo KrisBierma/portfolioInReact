@@ -20,22 +20,33 @@ class IndividualPsalm extends Component {
       summary: '',
       topic: '',
       wholeChapeter: '',
-      freq:[]
+      freq:[],
+      freq2:[]
     }
     this.getPsWordCount = this.getPsWordCount.bind(this);
+    this.groupWordsParent = this.groupWordsParent.bind(this);
+    this.flag = this.flag.bind(this);
   }
 
   // componentDidMount() {
   //   console.log(this.props.match.params);
   // }
 
-  // callback in parent, sent as props to PsChap child to get freq array to bring back here to state to then send to child pswordcount
+  // callback here in parent, sent as props to PsChap child to get freq array to bring back here to state to then send to child pswordcount
   getPsWordCount(params) {
     console.log(params)
     this.setState({
       freq: params[0],
       count: params[1]
     })
+  }
+
+  groupWordsParent(params) {
+    console.log(params)
+  }
+
+  flag(params) {
+    console.log(params)
   }
 
   render() {
@@ -47,10 +58,10 @@ class IndividualPsalm extends Component {
           <Col>
             <Row>
               <Col xs='6' sm='8'>
-                <PsChap chapterNum={this.state.chapterNum} getPsWordCount={this.getPsWordCount} />
+                <PsChap chapterNum={this.state.chapterNum} getPsWordCount={this.getPsWordCount} groupWordsParent={this.groupWordsParent} />
               </Col>
               <Col>
-                <PsWordCount freq={this.state.freq}/>
+                <PsWordCount freq={this.state.freq} freq2={this.state.freq2} />
               </Col>
             </Row>
 

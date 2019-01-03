@@ -1,25 +1,72 @@
 // gets array of words from sibling component PsChap.js (via parent individualPsalm's state) to put into table
-import React from 'react';
+import React, { Component } from 'react';
 
-const PsWordCount = (props) => (
-  <table className='wordTable'>
-    <thead>
-      <tr>
-        <th>Word</th>
-        <th>Count</th>
-      </tr>
-    </thead>
+class PsWordCount extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      freq: this.props.freq,
+      freq2: this.props.freq2,
+      flag: false
+    }
+    this.flag = this.flag.bind(this);
+    this.renderTableBody = this.renderTableBody.bind(this);
+  }  // console.log(this.props)
 
-    <tbody>
-      {props.freq.map((row, i) => (
-      <tr key={`${row.wordle}.${i}`}>
-        <td>{row.wordle}</td>
-        <td>{row.value}</td>
-      </tr>
-      ))
-      }               
-    </tbody>
-  </table>  
-)
+  flag() {
+    this.setState({flag:true});
+    // this.props.flag(this.state.flag);
+  }
+
+  // if flag, render word count w/o grouping; if !flag, render word table with grouping
+  renderTableBody() {
+    console.log(this.state.flag)
+    console.log(this.props.freq)
+    if (this.state.flag) {
+      return(
+        <tbody>
+          {this.props.freq2.map((row, i) => (
+            <tr key={`${row.wordle}.${i}`}>
+              <td>{row.wordle}</td>
+              <td>{row.value}</td>
+            </tr>
+            ))
+          }   
+        </tbody>      
+      )
+    }
+    else {
+      return(
+        <tbody>
+          {this.props.freq.map((row, i) => (
+            <tr key={`${row.wordle}.${i}`}>
+              <td>{row.wordle}</td>
+              <td>{row.value}</td>
+            </tr>
+            ))
+          }   
+        </tbody>      
+      )
+    }
+  }
+
+  render() {
+    return(
+      <div>
+        <table className='wordTable'>
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          {this.renderTableBody()}              
+        </table>  
+        <button className='btn btn-primary' onClick={this.flag}>Groups like words</button>
+      </div>     
+    )
+  }
+}
 
 export default PsWordCount;
+ 
