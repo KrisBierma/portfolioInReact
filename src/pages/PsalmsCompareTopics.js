@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Footer from '../components/Footer';
 import { Container } from 'reactstrap';
 import PsHeader from '../components/PsHeader';
-import ReactTable from "react-table";
+// import ReactTable from "react-table";
 
 class PsalmsCompareTopic extends Component {
   constructor(props) {

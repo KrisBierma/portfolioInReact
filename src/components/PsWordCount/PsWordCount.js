@@ -7,21 +7,25 @@ class PsWordCount extends Component {
     this.state = {
       freq: this.props.freq,
       freq2: this.props.freq2,
-      flag: false
+      flag: false,
+      buttonWords: 'Group like words'
     }
     this.flag = this.flag.bind(this);
     this.renderTableBody = this.renderTableBody.bind(this);
   }  // console.log(this.props)
 
+  // the 'group like words' button toggles the flag state and button words
   flag() {
-    this.setState({flag:true});
-    // this.props.flag(this.state.flag);
+    this.setState({
+      flag:!this.state.flag,
+      buttonWords: 'Ungroup like words'
+    });
   }
 
   // if flag, render word count w/o grouping; if !flag, render word table with grouping
   renderTableBody() {
-    console.log(this.state.flag)
-    console.log(this.props.freq)
+    // console.log(this.state.flag)
+    // console.log(this.props.freq)
     if (this.state.flag) {
       return(
         <tbody>
@@ -62,7 +66,7 @@ class PsWordCount extends Component {
           </thead>
           {this.renderTableBody()}              
         </table>  
-        <button className='btn btn-primary' onClick={this.flag}>Groups like words</button>
+        <button className='btn btn-primary' onClick={this.flag}>{this.state.buttonWords}</button>
       </div>     
     )
   }
