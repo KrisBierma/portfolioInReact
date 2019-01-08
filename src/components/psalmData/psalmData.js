@@ -20,18 +20,18 @@ class PsalmData extends Component {
   };
 
   componentDidMount(){
-    let that = this; // 'this' doesn't work inside db.ref() functions
+    let that = this; // 'this' doesn't work inside db.ref() functions (maybe need arrow func to bind it)
     
     const db = firebase.database();
     let key;
     
-    db.ref().orderByChild('chapterNum').equalTo(this.props.chapterNum).once('child_added', function(s){
-      // console.log(s.key)
+    db.ref('psalms').orderByChild('chapterNum').equalTo(this.props.chapterNum).once('child_added', function(s){
+      console.log(s.key)
       key = s.key;
     })
 
-    db.ref().once('value').then(function(s){
-      // console.log(s.val()); // gives everything
+    db.ref('psalms').once('value').then(function(s){
+      console.log(s.val()); // gives everything
       // console.log(s.val()[key]);
 
       const ps = s.val()[key];

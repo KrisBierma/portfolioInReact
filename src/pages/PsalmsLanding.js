@@ -74,7 +74,7 @@ class PsalmsLanding extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const db = firebase.database();
-    db.ref().push({
+    db.ref('psalms').push({
       author: this.state.author, 
       book: this.state.book, 
       firstVerse: this.state.firstVerse, 

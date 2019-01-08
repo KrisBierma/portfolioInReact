@@ -9,6 +9,7 @@ class PsChap extends Component {
       chapterNum: this.props.chapterNum,
       wholeChapeter: '',
       freq: [],
+      // newFreq2: [],
       count: '',
       groupedFreq: [],
       data2: []
@@ -18,6 +19,7 @@ class PsChap extends Component {
     this.countFreqOfWords = this.countFreqOfWords.bind(this);
     this.sortWords = this.sortWords.bind(this);
     this.groupWords = this.groupWords.bind(this);
+    this.recurringLines = this.recurringLines.bind(this);
   }
 
   componentDidMount() {
@@ -47,11 +49,19 @@ class PsChap extends Component {
       }
     };
 
-    axios.get(queryURL, config).then((res) =>{
+    // build in resiliency: setTimeout, fallback, error msgs
+    const timeout = 5000;
+    axios.get(queryURL, config, timeout)
+    .then((res) =>{
       // console.log(res.data);
       // console.log(res.data.passages[0]);
       this.setState({wholeChapeter: res.data.passages[0]});
       this.getWords(this.state.wholeChapeter);
+      this.recurringLines();
+    })
+    .catch(error => {
+      console.log(error);
+      this.setState({wholeChapeter: "There was an error getting this chapter from ESV. Please try again later!"})
     });
 
     // just gets first verse
@@ -91,7 +101,7 @@ class PsChap extends Component {
     }
 
     // filter out articles, conjunctions
-    const dontCount = ['and', 'or', 'but', 'the', 'by', 'a', 'an', 'on', 'to', 'is', 'in', 'for', 'are', 'of', ''];
+    const dontCount = ['and', 'or', 'but', 'the', 'by', 'a', 'an', 'on', 'to', 'is', 'in', 'for', 'are', 'of', '', 'with'];
 
     // loop through each dontCount word
     dontCount.forEach(function(noWord){
@@ -162,9 +172,64 @@ class PsChap extends Component {
     this.sortWords();
   }
 
+  // find recurring lines of 3+ words
+  recurringLines() {
+    // change psalm to array
+    const arr = this.state.wholeChapeter.replace(/[.,;!?]/g, '').split(/\s/).filter(word => word !== '');
+    // console.log(arr)
+    let tempArr = [];
+    let phrases = [];
+    let indexOfPhrases = [];
+    // loop through all once, comparing each word to all the others
+    for (let i=0; i<arr.length; i++) {
+      // loop all second time to find matches
+      for (let j=0; j<arr.length; j++) {
+        // check if three words in a row match and that the word isn't checking itself
+        if (i!== j && arr[i] === arr[j] && arr[i+1] === arr[j+1] && arr[i+2] === arr[j+2]) {
+          tempArr = [];
+          let t2 = [];
+
+          // a match of 3 words in a row gets pushed to tempArr
+          tempArr.push(arr[i], arr[i+1], arr[i+2]);
+
+          // check to see if 4 or more words match and push to tempArr if so
+          let k = 3;
+          while (arr[i+k] === arr[j+k]) {
+            tempArr.push(arr[i+k]);
+            k++;
+          }          
+          t2 = tempArr.join(' ');
+
+          // check if the phrase is already included and if the index of either of them are already included
+          function check() {
+            if (phrases.indexOf(t2) === -1 && indexOfPhrases.includes(i) === false && indexOfPhrases.includes(j) === false) {
+              return true;
+            }
+          }
+          if (check()) {phrases.push(t2)}; 
+
+          // if the index of the word wasn't already there, it gets pushed to indexOfPhrases to know which words were already included
+          for (let l = 0; l < 3; l++) {
+            if (indexOfPhrases.includes(i + l) === false) {
+              indexOfPhrases.push(i + l);
+            }
+          }
+          for (let l = 0; l < 3; l++) {
+            if (indexOfPhrases.includes(j + l) === false) {
+              indexOfPhrases.push(j + l);
+            }
+          }
+          }
+      }
+    }
+    // console.log(phrases); 
+    // call the func in the parent 'individualPsalm' component to pass the data to it so it can get displayed
+    this.props.frequentPhrases(phrases);
+  }
+
   // filters out words that only show up once in the psalm; sorts from greatest to least; displays in the table
   sortWords(){
-    // console.log(this.state.freq)
+    console.log(this.state.freq)
     const freq = this.state.freq;
     const newFreq=[]; // new array to hold updated list
 
@@ -180,6 +245,7 @@ class PsChap extends Component {
     // call this function in the parent (individualPsalm) which sends the freq array back to parent to use in pswordCount
     const data = [newFreq, this.state.count];
     // console.log(this.props)
+    console.log(data);
     this.props.getPsWordCount(data);
 
     // deep clone of array of obj from MDN
@@ -188,16 +254,20 @@ class PsChap extends Component {
     // console.log(clone)
 
     this.setState({data2: clone});
-    this.groupWords();
+    this.groupWords(freq);
     
     // this.props.groupWords(data);
   }
 
   // for use in parent IndividualPsalm when 'group words' is clicked (this data goes through parent IndividualPsalm to child PsWordCount)
-  groupWords() {
-    const data2 = this.state.data2;
+  groupWords(freq) {
+    // const data2 = this.state.data2;
+    // get all words (even if they're in there only once) so they get included in 'group words' count
+    const data2 = freq;
+    const newFreq2 = [];
+    // console.log(freq)
     // these are the words to consolidate (not really synonyms, but that's what we're calling them)
-    const synonyms = [['God', 'LORD'], ['he', 'him', 'his'], ['nor', 'not'], ['I', 'me', 'my', 'mine'], ['you', 'your'], ['their', 'them']];
+    const synonyms = [['God', 'LORD'], ['he', 'him', 'his'], ['nor', 'not'], ['I', 'me', 'my', 'mine'], ['you', 'your'], ['their', 'them'], ['has', 'have', 'had'], ['commands', 'commandments', 'precepts', 'statues', 'law', 'decrees', 'decress', 'rules'], ['faithful', 'faithfulness']];
 
     // loop through the words frequency array (twice) for each pair of words
     synonyms.forEach(s => {
@@ -227,8 +297,10 @@ class PsChap extends Component {
             return prev + cur.value;
           }, 0);
           let tempWords = tempArr[0].wordle;
+          console.log(tempArr)
           for (let i = 1; i<tempArr.length; i++) {
             tempWords += `, ${tempArr[i].wordle}`
+            console.log(tempWords)
           }          
           data2[locations[0]].wordle = tempWords;
           data2[locations[0]].value = tempValue;
@@ -243,8 +315,15 @@ class PsChap extends Component {
         }
       }
     })
+    // filter out any words that only show up once
+    for (let i=0; i<data2.length;i++){
+      if (data2[i].value > 1){
+        newFreq2.push(data2[i]);
+      }
+    }
     // call the func in the parent 'individualPsalm' component to pass the data to it so it can then go to PsWordCount
-    this.props.groupWordsParent(data2);
+    console.log(newFreq2)
+    this.props.groupWordsParent(newFreq2);
   }
 
   render() {

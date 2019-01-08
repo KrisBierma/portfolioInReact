@@ -32,7 +32,7 @@ class PsalmsCompareAll extends Component {
     let that = this; // 'this' doesn't work inside functions
     const db = firebase.database();
 
-    db.ref().on('value', function(s){
+    db.ref('psalms').on('value', function(s){
       // console.log(s.val()); // gives everything
       // that.setState({everything: s.val()});
 

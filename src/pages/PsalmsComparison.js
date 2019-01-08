@@ -15,17 +15,23 @@ class PsalmsComparison extends Component {
     this.state = {
       psalm1: this.props.match.params.psalmId.split('&')[0],
       psalm2: this.props.match.params.psalmId.split('&')[1],
-      freq: []
-      // freq2: []
+      freq: [],
+      freq2: []
     }
     this.getPsWordCount = this.getPsWordCount.bind(this);
+    this.groupWordsParent = this.groupWordsParent.bind(this);
   }
-
-  // need freq1 and freq2
 
   // callback for child (psChap) to call to get data from it, save it here (the parent) and have another child (psWordCount) call it
   getPsWordCount(params){
-    this.setState({freq: params});
+    this.setState({freq: params[0], count: params[1]});
+  }
+
+  groupWordsParent(params) {
+    // console.log(params)
+    this.setState({
+      freq2: params
+    })
   }
 
   render() {
@@ -38,11 +44,11 @@ class PsalmsComparison extends Component {
           <Row>
             <Col>
               <p>Psalm {this.state.psalm1}</p>
-              <PsChap chapterNum={this.state.psalm1} getPsWordCount={this.getPsWordCount} />
+              <PsChap chapterNum={this.state.psalm1} getPsWordCount={this.getPsWordCount} groupWordsParent={this.groupWordsParent} />
             </Col>
             <Col>
               <p>Psalm {this.state.psalm1}</p>
-              <PsChap chapterNum={this.state.psalm2} getPsWordCount={this.getPsWordCount} />
+              <PsChap chapterNum={this.state.psalm2} getPsWordCount={this.getPsWordCount} groupWordsParent={this.groupWordsParent} />
             </Col>
           </Row>
           <Row>

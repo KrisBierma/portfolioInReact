@@ -21,10 +21,12 @@ class IndividualPsalm extends Component {
       topic: '',
       wholeChapeter: '',
       freq:[],
-      freq2:[]
+      freq2:[],
+      frequentPhrases: []
     }
     this.getPsWordCount = this.getPsWordCount.bind(this);
     this.groupWordsParent = this.groupWordsParent.bind(this);
+    this.frequentPhrases = this.frequentPhrases.bind(this);
     // this.flag = this.flag.bind(this);
   }
 
@@ -34,7 +36,7 @@ class IndividualPsalm extends Component {
 
   // callback here in parent, sent as props to PsChap child to get freq array to bring back here to state to then send to child pswordcount
   getPsWordCount(params) {
-    // console.log(params)
+    console.log(params)
     this.setState({
       freq: params[0],
       count: params[1]
@@ -46,6 +48,12 @@ class IndividualPsalm extends Component {
     this.setState({
       freq2: params
     })
+  }
+
+  frequentPhrases(params) {
+    this.setState({
+      frequentPhrases: params
+    });
   }
 
   // flag(params) {
@@ -61,7 +69,12 @@ class IndividualPsalm extends Component {
           <Col>
             <Row>
               <Col xs='6' sm='8'>
-                <PsChap chapterNum={this.state.chapterNum} getPsWordCount={this.getPsWordCount} groupWordsParent={this.groupWordsParent} />
+                <PsChap chapterNum={this.state.chapterNum} getPsWordCount={this.getPsWordCount} groupWordsParent={this.groupWordsParent} frequentPhrases={this.frequentPhrases}/>
+                <h5>Frequent Phrases</h5>
+                {this.state.frequentPhrases.map((f) => {
+                  return(
+                  <p>{f}</p>
+                  )})}
               </Col>
               <Col>
                 <PsWordCount freq={this.state.freq} freq2={this.state.freq2} />
