@@ -27,12 +27,7 @@ class IndividualPsalm extends Component {
     this.getPsWordCount = this.getPsWordCount.bind(this);
     this.groupWordsParent = this.groupWordsParent.bind(this);
     this.frequentPhrases = this.frequentPhrases.bind(this);
-    // this.flag = this.flag.bind(this);
   }
-
-  // componentDidMount() {
-  //   console.log(this.props.match.params);
-  // }
 
   // callback here in parent, sent as props to PsChap child to get freq array to bring back here to state to then send to child pswordcount
   getPsWordCount(params) {
@@ -56,10 +51,6 @@ class IndividualPsalm extends Component {
     });
   }
 
-  // flag(params) {
-  //   console.log(params)
-  // }
-
   render() {
     return(
       <Container className='psalmContainer'>
@@ -73,7 +64,7 @@ class IndividualPsalm extends Component {
                 <h5>Frequent Phrases</h5>
                 {this.state.frequentPhrases.map((f) => {
                   return(
-                  <p>{f}</p>
+                  <p key={f[0]+f[1]+'-'+f[5]+f[6]+f[10]+''+ f.length}>{f}</p>
                   )})}
               </Col>
               <Col>
@@ -83,6 +74,9 @@ class IndividualPsalm extends Component {
 
             <Row>
               <PsalmData chapterNum={this.state.chapterNum} />
+            </Row>
+            <Row>
+              <p>Grouping words takes out passive verbs, conjuntions and articles, and it combines like terms.</p>
             </Row>
           </Col>
         </Row>
