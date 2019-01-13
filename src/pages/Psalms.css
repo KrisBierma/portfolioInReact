@@ -58,3 +58,7 @@ th, td{
   flex-direction: row;
   justify-content: space-around;
 }
+.fern{
+  height: 700px; 
+  transform: rotate(70deg);
+}

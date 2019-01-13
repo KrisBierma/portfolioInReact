@@ -172,6 +172,8 @@ class PsalmsLanding extends Component {
                   </Form>
                 </Row>
               </Col>
+              {/* fern image */}
+              <img classname='fern' alt='fern' src={require('../assets/images/fern.png')}></img>
             </Row>
                 {/* just for data entry */}
                 <Row>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Col, Row } from 'reactstrap';
 import axios from 'axios';
+import {sortingFunctions} from './sortingFunctions';
 
 class PsChap extends Component {
   constructor(props){
@@ -102,7 +103,7 @@ class PsChap extends Component {
     }
 
     // filter out articles, conjunctions
-    const dontCount = ['and', 'or', 'but', 'the', 'by', 'a', 'an', 'on', 'to', 'is', 'are', 'am', 'was', 'were', 'in', 'for', 'are', 'of', '', 'with', 'as', 'at', 'be', 'do', 'shall', 'let', 'has', 'have', 'had', 'from', 'beside'];
+    const dontCount = ['and', 'or', 'but', 'the', 'by', 'a', 'an', 'on', 'to', 'is', 'are', 'am', 'was', 'were', 'in', 'for', 'are', 'of', '', 'with', 'as', 'at', 'be', 'do', 'shall', 'let', 'has', 'have', 'had', 'from', 'beside', 'then', 'that', 'get', 'also', 'which'];
 
     // loop through each dontCount word
     dontCount.forEach(function(noWord){
@@ -262,7 +263,7 @@ class PsChap extends Component {
     const data2 = JSON.parse(JSON.stringify(freq));
     const newFreq2 = [];
     // these are the words to consolidate (not really synonyms, but that's what we're calling them)
-    const synonyms = [['God', 'LORD'], ['he', 'him', 'his'], ['nor', 'not'], ['I', 'me', 'my', 'mine'], ['you', 'your'], ['their', 'them'], ['commands', 'command', 'commandment', 'commandments', 'precepts', 'statutes', 'law', 'decrees', 'decress', 'rules'], ['faithful', 'faithfulness'], ['woman', 'women'], ['man', 'men'], ['who', 'whose'], ['child', 'children'], ['we', 'us', 'our'], ['mighty', 'mightier']];
+    const synonyms = [['God', 'LORD'], ['he', 'him', 'his', 'himself'], ['nor', 'not'], ['I', 'me', 'my', 'mine'], ['you', 'your'], ['their', 'them'], ['commands', 'command', 'commandment', 'commandments', 'precepts', 'statutes', 'law', 'decrees', 'decress', 'rules'], ['faithful', 'faithfulness'], ['woman', 'women'], ['man', 'men'], ['who', 'whose'], ['child', 'children'], ['we', 'us', 'our'], ['mighty', 'mightier'], ['true', 'truth'], ['false', 'falsehood'], ['glad', 'gladdness'], ['meditate', 'meditates', 'meditation']];
 
     // loop through the words frequency array (twice) for each pair of words
     synonyms.forEach(s => {
@@ -329,81 +330,95 @@ class PsChap extends Component {
       }      
     })
 
-    // check all the ungrouped words for plurals
-    for (let i=0; i<data2.length; i++) {
-      // if data is grouped, skip it
-      while (skipped.indexOf(i) != -1) {
-          i = i+1;
-      }      
 
-        for (let j=0; j<data2.length; j++) {
-          // don't compare word to itself or word to grouped words
-          if (j === i && j !== data2.length-1) {
-              j = j+1;
-          }     
-          // only continue if the difference of lengths is 1
-          let d1 = data2[i].wordle.length;
-          let d2 = data2[j].wordle.length
-          if (d1 - d2 === 1 || d1 - d2 === -1) {
-            let w1 = data2[i].wordle;
-            let w2 = data2[j].wordle;
-            let l1 = w1.length;
-            let l2 = w2.length;
-            let greater, lesser;
+    // check all the ungrouped words for plurals (just adding -s)
+    const difference = -2;
+    const toFind = 'es';
+    console.log(difference, -difference)
 
-            // find the greater and lesser number
-            l1 > l2 ? (greater = w1, lesser = w2) : (greater = w2, lesser = w1);
+    sortingFunctions(data2, skipped, difference, toFind);
 
-            // compare data[i] to data[j]
-            // check if the last letter of the greater is s
-            var last = greater.length-1;
-            if (greater[last] === 's') {
-              let greaterObj, lesserObj, greaterIndex, lesserIndex;
-              l1 > l2 ? (greaterObj = data2[i], lesserObj = data2[j], greaterIndex = data2.indexOf(data2[i]), lesserIndex = data2.indexOf(data2[j])) : (greaterObj = data2[j], lesserObj = data2[i], greaterIndex = data2.indexOf(data2[j]), lesserIndex = data2.indexOf(data2[i]));
-// console.log(i,j)
 
-              // compare letter by letter
-              let flagCount = 0;
-              for (let k=0; k<lesser.length; k++) {
-                if (lesser[k].toLowerCase() === greater[k].toLowerCase()) {
-                  flagCount++;
-                  // console.log(lesser, greater, lesser[k].toLowerCase(), greater[k].toLowerCase())
-                }
-              }
-              let tempArr = [];
-              let locations = [];
-              // if all the letters match add to tempArr, change value
-              if (flagCount === lesser.length) {
-                console.log('---------------------------------------')
-                console.log(lesser, greater)
+//     for (let i=0; i<data2.length; i++) {
+//       // if data is grouped, skip it
+//       while (skipped.indexOf(i) !== -1) {
+//           i = i+1;
+//       }      
 
-                tempArr.push(lesserObj, greaterObj);
-                locations.push(greaterIndex, lesserIndex);
+//         for (let j=0; j<data2.length; j++) {
+//           // don't compare word to itself or word to grouped words
+//           if (j === i && j !== data2.length-1) {
+//               j = j+1;
+//           }     
+//           // only continue if the difference of lengths is 1
+//           let d1 = data2[i].wordle.length;
+//           let d2 = data2[j].wordle.length
+//           if (d1 - d2 === 1 || d1 - d2 === -1) {
+//             let w1 = data2[i].wordle;
+//             let w2 = data2[j].wordle;
+//             let l1 = w1.length;
+//             let l2 = w2.length;
+//             let greater, lesser;
 
-                // consolidate all the found synonyms and values into once index (the first one of the synonyms array) of the data2 array and remove the other locations/values
-                let tempValue = tempArr.reduce(function(prev, cur) {
-                  return prev + cur.value;
-                }, 0);
-                let tempWords = tempArr[0].wordle + '(s)'; 
+//             // find the greater and lesser number
+//             function findThem() {
+//               return l1 > l2 ? (greater = w1, lesser = w2) : (greater = w2, lesser = w1)
+//             };
+//             findThem();
 
-                // set the new word and value
-                data2[lesserIndex].wordle = tempWords;
-                data2[lesserIndex].value = tempValue;
-console.log(tempArr, tempValue, tempWords)
-                locations.sort(function(a,b){return b-a;});
-console.log(data2)                 
-                // order locations array in descending order so the splicing happens from back to front
-                for (let i=0; i<tempArr.length; i++){
-                  if (locations[i] !== lesserIndex) {
-                    data2.splice(locations[i], 1);
-                  }
-                }
-              }
-            }
-          }  
-        }
+//             // compare data[i] to data[j]
+//             // check if the last letter of the greater is s
+//             var last = greater.length-1;
+//             if (greater[last] === 's') {
+//               let greaterObj, lesserObj, greaterIndex, lesserIndex;
+//               function findThem2() {
+//                 return l1 > l2 ? (greaterObj = data2[i], lesserObj = data2[j], greaterIndex = data2.indexOf(data2[i]), lesserIndex = data2.indexOf(data2[j])) : (greaterObj = data2[j], lesserObj = data2[i], greaterIndex = data2.indexOf(data2[j]), lesserIndex = data2.indexOf(data2[i]))
+//               };
+//               findThem2();
+// // console.log(i,j)
 
-      }
+//               // compare letter by letter
+//               let flagCount = 0;
+//               for (let k=0; k<lesser.length; k++) {
+//                 if (lesser[k].toLowerCase() === greater[k].toLowerCase()) {
+//                   flagCount++;
+//                   // console.log(lesser, greater, lesser[k].toLowerCase(), greater[k].toLowerCase())
+//                 }
+//               }
+//               let tempArr = [];
+//               let locations = [];
+//               // if all the letters match add to tempArr, change value
+//               if (flagCount === lesser.length) {
+//                 // console.log('---------------------------------------')
+//                 // console.log(lesser, greater)
+
+//                 tempArr.push(lesserObj, greaterObj);
+//                 locations.push(greaterIndex, lesserIndex);
+
+//                 // consolidate all the found synonyms and values into once index (the first one of the synonyms array) of the data2 array and remove the other locations/values
+//                 let tempValue = tempArr.reduce(function(prev, cur) {
+//                   return prev + cur.value;
+//                 }, 0);
+//                 let tempWords = tempArr[0].wordle + '(s)'; 
+
+//                 // set the new word and value
+//                 data2[lesserIndex].wordle = tempWords;
+//                 data2[lesserIndex].value = tempValue;
+// // console.log(tempArr, tempValue, tempWords)
+//                 locations.sort(function(a,b){return b-a;});
+// // console.log(data2)                 
+//                 // order locations array in descending order so the splicing happens from back to front
+//                 for (let i=0; i<tempArr.length; i++){
+//                   if (locations[i] !== lesserIndex) {
+//                     data2.splice(locations[i], 1);
+//                   }
+//                 }
+//               }
+//             }
+//           }  
+//         }
+
+//       }
 
     // sort data by value then alphabet
     data2.sort(function(a,b){
