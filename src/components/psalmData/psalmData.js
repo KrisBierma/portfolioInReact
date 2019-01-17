@@ -60,7 +60,7 @@ class PsalmData extends Component {
   render() {
     return(
       <table>
-        <tbody>
+        <tbody id='psalmDataTable'>
           <tr>
             <th>Author</th>
             <td>{this.state.author}</td>

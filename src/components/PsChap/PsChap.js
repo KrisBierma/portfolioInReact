@@ -437,7 +437,7 @@ class PsChap extends Component {
 
   render() {
     return(
-      <p>{this.state.wholeChapeter}</p>
+      <p className='contentBox'>{this.state.wholeChapeter}</p>
     )
   }
 }

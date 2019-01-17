@@ -105,10 +105,10 @@ class PsalmsCompareAll extends Component {
 
     return(
       <Container className='psalmContainer'>
-        <PsHeader heading='Compare All' />
+        <PsHeader heading='Compare all the Psalms' />
         <div className='compareTableDiv'>
           <div className='compareAllButtonDiv'>
-            <p>Click a table heading to sort or...</p>
+            <p><u>Click a table heading to sort or...</u></p>
             <PsButton changePage={this.changePage} id='authors'>get detailed author comparisons</PsButton>
             <PsButton changePage={this.changePage} id='topics'>get detailed topic info</PsButton>
           </div>

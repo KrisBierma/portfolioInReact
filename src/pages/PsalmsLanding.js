@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
-import {PsButton} from '../components/PsButton';
-// import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import './Psalms.css';
 import PsHeader from '../components/PsHeader';
@@ -24,8 +22,7 @@ class PsalmsLanding extends Component {
       psalm1: '',
       psalm2: '',
       invalidMsg: '',
-      changePage: false,
-      changePage2: false
+      changePage: ''
     }
     this.submitForm = this.submitForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -58,7 +55,7 @@ class PsalmsLanding extends Component {
     }
     // pass the requested psalms as props and switch to comparision page
     else {
-      this.setState({changePage: true})
+      this.setState({changePage: e.target.value})
     }
   }
 
@@ -97,9 +94,9 @@ class PsalmsLanding extends Component {
     });
   }
 
-  // change page to compare all psalms
-  changePage() {
-    this.setState({changePage2: true})
+  // set value from clicked button's id so the render redirect knows where to go
+  changePage(e) {
+    this.setState({changePage: e.target.value})
   }
 
   render() {
@@ -108,23 +105,27 @@ class PsalmsLanding extends Component {
       psalms.push(i);
     };
 
-    // console.log(this.props)
-
-    // this.state.changePage compares 2 psalms; changePage2 compare all psalms
-    if (this.state.changePage === true){
-      return <Redirect to={`/psalmsCompare/${this.state.psalm1}&${this.state.psalm2}`} />
-    }
-    else if (this.state.changePage2){
-      return <Redirect to = {`/psalmsCompareAll`} />
+    // this.state.changePage tells which button was clicked
+    switch (this.state.changePage) {
+      case 'topicsCompare':
+        return <Redirect to={'/psalmsCompareTopic'} />
+      case 'authorsCompare':
+        return <Redirect to={'/psalmsCompareAuthor'} />
+      case 'compareAll':
+        return <Redirect to = {`/psalmsCompareAll`} />
+      case 'compareTwo':
+        return <Redirect to={`/psalmsCompare/${this.state.psalm1}&${this.state.psalm2}`} />
+      default:
+        break;
     }
 
     return(
       <Container className='psalmContainer'>
-        <PsHeader psalmId="Comparisons" />
+        <PsHeader heading="Psalms" />
         <Row className='psalmsContent'>
-          <Col>
-            <Row>
-              <h5>Click a Psalm to see the deets.</h5>
+          <Col className='mainCol'>
+            <Row className='contentBox'>
+              <h5><u>Click a Psalm to see the deets.</u></h5>
               <ul className='allPsalms'>
                 {psalms.map((psalm) => {
                   return(
@@ -140,24 +141,19 @@ class PsalmsLanding extends Component {
             </Row>
             <Row>
               {/* compare all psalms */}
-              <Col>
-                <Row>
-                    <h5>Compare all the Psalms</h5>
-                </Row>
-                <Row>
-                  <PsButton id='psalmsCompare' value={this.state.author} changePage={this.changePage}>Compare All the Psalms</ PsButton>    
-                  {/* <button className='btn btn-primary' onClick={this.submitForm}>Compare these two</button> */}
+              <div className='contentBoxSmall'>
+                <Row className='buttonRow'>
+                  <button value='compareAll' className='btn btn-primary' onClick={this.changePage}>Compare All Psalms</button>
 
-                </Row>
-              </Col>
-              {/* compare two psalms */}
-              <Col>
-                <Row>
-                  <p>Compare two Psalms.</p>
+                  <button value='authorsCompare' className='btn btn-primary' onClick={this.changePage}>Compare Authors</button>
+
+                  <button value='topicsCompare' className='btn btn-primary' onClick={this.changePage}>Compare Topics</button>
                 </Row>
                 <Row>
-                  <Form>
-                    <FormGroup row>
+                <Form className='contentBoxSmall2'>
+                  <h5><u>Compare two Psalms.</u></h5>
+
+                    <FormGroup row className='form'>
                       <Col sm={5} align='center'>
                         <Label for='psalm1'>Psalm #1</Label>
                         <Input type='number' name='psalm1' value={this.state.psalm1} onChange={this.handleChange} placeholder='44' />
@@ -168,28 +164,29 @@ class PsalmsLanding extends Component {
                       </Col>
                     </FormGroup>
                     <p id='invalidMsg'>{this.state.invalidMsg}</p>
-                    <button type='submit' className='btn btn-primary' onClick={this.submitForm}>Compare these two</button>
+                    <button type='submit' 
+                    value='compareTwo' className='btn btn-primary' onClick={this.submitForm}>Compare these two</button>
                   </Form>
                 </Row>
-              </Col>
-              {/* fern image */}
-              <img classname='fern' alt='fern' src={require('../assets/images/fern.png')}></img>
-            </Row>
-                {/* just for data entry */}
-                <Row>
-                  <Form onSubmit={this.handleSubmit}>
-                    <Input type='string' name='author' value={this.state.author} onChange = {this.handleChange} placeholder='Author' />
-                    <Input type='string' name='book' value={this.state.book} onChange = {this.handleChange} placeholder='Book' />
-                    <Input type='string' name='firstVerse' value={this.state.firstVerse} onChange= {this.handleChange} placeholder='first verse' />
-                    <Input type='string' name='headings' value={this.state.headings} onChange= {this.handleChange} placeholder='headings' />
-                    <Input type='number' name='chapterNum' value={this.state.chapterNum} onChange= {this.handleChange} placeholder='chapter' />
-                    <Input type='string' name='summary' value={this.state.summary} onChange= {this.handleChange} placeholder='summary' />
-                    <Input type='string' name='topic' value={this.state.topic} onChange= {this.handleChange} placeholder='topic' />
-                    <Input type='number' name='wordCount' value={this.state.wordCount} onChange= {this.handleChange} placeholder='word count' />
 
-                    <button type='submit' value='Submit'>Submit Data</button>
-                  </Form>
-                </Row>
+                <img className='fern' alt='fern' src={require('../assets/images/fern2.png')}></img>
+              </div>
+            </Row>
+            {/* just for data entry */}
+            <Row>
+              <Form onSubmit={this.handleSubmit}>
+                <Input type='string' name='author' value={this.state.author} onChange = {this.handleChange} placeholder='Author' />
+                <Input type='string' name='book' value={this.state.book} onChange = {this.handleChange} placeholder='Book' />
+                <Input type='string' name='firstVerse' value={this.state.firstVerse} onChange= {this.handleChange} placeholder='first verse' />
+                <Input type='string' name='headings' value={this.state.headings} onChange= {this.handleChange} placeholder='headings' />
+                <Input type='number' name='chapterNum' value={this.state.chapterNum} onChange= {this.handleChange} placeholder='chapter' />
+                <Input type='string' name='summary' value={this.state.summary} onChange= {this.handleChange} placeholder='summary' />
+                <Input type='string' name='topic' value={this.state.topic} onChange= {this.handleChange} placeholder='topic' />
+                <Input type='number' name='wordCount' value={this.state.wordCount} onChange= {this.handleChange} placeholder='word count' />
+
+                <button type='submit' value='Submit'>Submit Data</button>
+              </Form>
+            </Row>
           </Col>
         </Row>
         <Footer></Footer>

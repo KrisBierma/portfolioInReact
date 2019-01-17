@@ -3,54 +3,37 @@
   text-decoration: none;
   list-style-type: none;
   display: inline-block;
-  /* margin-right: 8px; */
   width:37px;
   margin-bottom:2.5px;
   text-align: center;
 }
 .psalmsList a:hover{
-  color:#D81E23;
+  color:#7b9139;
+  /* color:#D81E23; */
   font-weight: 600;
 }
-.psalmContainer{
-  margin:0;
-  padding:0;
-  max-width:100%;
-}
-.psalmsContent{
-  padding: 50px;
-  margin:0;
-}
 th, td{
-  text-align: left;
-  padding-left:5px;
+  /* text-align: left; */
+  /* padding-left:5px; */
   padding-bottom: 0;
+  border-bottom: 1px solid #ddd;
 }
+tr:hover {background-color: #f5f5f5;}
+
 .wordTable{
-  /* align:center; */
-  width: inherit;
-  /* border: 1px solid black; */
-  padding: 2px;
+  width: 100%;
+  /* padding: 2px; */
 }
 .psalmLink{
   color:black;
 }
 .psalmLink:hover{
-  color:#D81E23;
-}
-/* label{
-  color:red;
-  text-align: center;
-} */
-.allPsalms{
+  color:#7b9139;
+  /* color:#D81E23; */
 
 }
 .compareTableDiv{
-  /* width:90%; */
   margin:20px;
-}
-.compareTable{
-
 }
 .compareAllButtonDiv{
   margin:20px;
@@ -60,5 +43,77 @@ th, td{
 }
 .fern{
   height: 700px; 
-  transform: rotate(70deg);
+  transform: rotate(34deg);
+  position: absolute;
+  right: 50px;
+  top: 160px;
+}
+/* light #c2d03b */
+/* medium #7b9139 */
+/* dark #5b7428 */
+/* yellow d0ad2f */
+h1.ps{
+  color:#ffffff;
+  font-size: 45px;
+  font-family: 'Caveat', cursive;
+  background-color:transparent;
+  padding:10px;
+  margin-bottom:0px;
+  line-height:1;
+}
+#btn-ps{
+  color:white;
+  box-shadow: 0 3px 0 0 black;
+  background-color: #5b7428;
+}
+
+.psalmContainer{
+  margin:0;
+  padding:0;
+  max-width:100%;
+}
+.psalmsContent{
+  padding: 5% 10%;
+  margin:0;
+  background-color: #ebf1da;
+}
+.mainCol{
+  /* background-color: pink; */
+}
+.contentBox{
+  background-color: white;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+.contentBoxSmall{
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 50px;
+  flex-direction: column;
+}
+.contentBoxSmall2{
+  padding: 20px;
+  text-align: center;
+}
+.contentBoxTable{
+  text-align: center;
+  text-align: -webkit-center;
+  /* flex-direction:  */
+  /* width: 200px; */
+}
+.form{
+  justify-content: center;
+}
+.buttonRow{
+  justify-content: space-around;
+  padding-bottom:20px;
+  border-bottom: dotted 7px #ebf1da;
+}
+.footnote{
+  padding: 15px;
+  margin-top: 20px;
+  border-top: 1px black dotted;
+}
+.footnote p{
+  font-size: 0.9em;
 }

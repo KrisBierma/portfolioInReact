@@ -8,6 +8,7 @@ import PsalmsCompareAll from './pages/PsalmsCompareAll';
 import PsalmsCompareAuthor from './pages/PsalmsCompareAuthor';
 import PsalmsCompareTopic from './pages/PsalmsCompareTopics';
 import psalmsFAQ from './pages/PsalmsFAQ';
+import { Row, Col } from 'reactstrap';
 
 class App extends Component {
   render() {
@@ -16,12 +17,14 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Portfolio} />
           <Route exact path='/psalms' component={PsalmsLanding} />
-          <Route exact path='/psalmsCompare/:psalmId' component={PsalmsComparison} />
-          <Route exact path='/psalmsCompareAll' component={PsalmsCompareAll} />
-          <Route exact path='/psalmsCompareAuthor' component={PsalmsCompareAuthor} />
-          <Route exact path='/psalmsCompareTopic' component={PsalmsCompareTopic} />
-          <Route exact path='/psalm/:chapterNum' component={IndividualPsalm} /> 
-          <Route exact path='/psalmsFAQ' component={psalmsFAQ} />
+          {/* <div className='here'> */}
+            <Route exact path='/psalmsCompare/:psalmId' component={PsalmsComparison} />
+            <Route exact path='/psalmsCompareAll' component={PsalmsCompareAll} />
+            <Route exact path='/psalmsCompareAuthor' component={PsalmsCompareAuthor} />
+            <Route exact path='/psalmsCompareTopic' component={PsalmsCompareTopic} />
+            <Route exact path='/psalm/:chapterNum' component={IndividualPsalm} /> 
+            <Route exact path='/psalmsFAQ' component={psalmsFAQ} />
+          {/* </div> */}
           <Route path='*' component={Portfolio} />
         </Switch>      
       </BrowserRouter>

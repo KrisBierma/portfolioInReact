@@ -56,12 +56,12 @@ class PsWordCount extends Component {
 
   render() {
     return(
-      <div>
+      <div className='contentBoxTable'>
         <table className='wordTable'>
           <thead>
             <tr>
-              <th>Word</th>
-              <th>Count</th>
+              <th><u>Word</u></th>
+              <th><u>Count</u></th>
             </tr>
           </thead>
           {this.renderTableBody()}              

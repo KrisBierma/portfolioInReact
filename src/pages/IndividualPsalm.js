@@ -51,7 +51,7 @@ class IndividualPsalm extends Component {
   }
 
   frequentPhrases(params) {
-    var title = (params.length > 0) ? 'Frequent Phrases' : '';
+    var title = (params.length > 0) ? <u>Frequent Phrases:</u> : '';
     this.setState({
       frequentPhrases: params,
       frequentPhrasesTitle: title
@@ -86,30 +86,41 @@ class IndividualPsalm extends Component {
         
         <Row className='psalmsContent'>
           <Col>
+
             <Row>
-              {/* Using the reactStrap Button tag links to the url so it changes and giving it an onClick func forces a refreshed state so component completely rerenders. The component does not unmount */}
-              <Button tag={Link} to={`/psalm/${previous}`} onClick={() => this.whichPsalm(previous)}>Previous Psalm</Button>
-              <Button tag={Link} to={`/psalm/${next}`} onClick={() => this.whichPsalm(next)}>Next Psalm</Button>
-            </Row>
-            <Row>
-              <Col xs='6' sm='8'>
+              <Col xs='8' sm='9'>
+              {/* The actual chapter */}
                 <PsChap chapterNum={this.state.chapterNum} getPsWordCount={this.getPsWordCount} groupWordsParent={this.groupWordsParent} frequentPhrases={this.frequentPhrases}/>
-                <h5>{this.state.frequentPhrasesTitle}</h5>
-                {this.state.frequentPhrases.map((f) => {
-                  return(
-                  <p key={f[0]+f[1]+'-'+f[5]+f[6]+f[10]+''+ f.length}>{f}</p>
-                  )})}
+                {/* Frequent Phrases */}
+                <div className='contentBox' style={{columnCount: '2'}}>
+                  <h5>{this.state.frequentPhrasesTitle}</h5>
+                  {this.state.frequentPhrases.map((f) => {
+                    return(
+                    <p key={f[0]+f[1]+'-'+f[5]+f[6]+f[10]+''+ f.length}>{f}</p>
+                    )})}
+                </div>
               </Col>
-              <Col>
+
+              {/* Word count */}
+              <Col className='contentBox' style={{marginLeft: '30px'}}>
                 <PsWordCount freq={this.state.freq} freq2={this.state.freq2} />
               </Col>
             </Row>
 
-            <Row>
+            {/* Psalm data */}
+            <Row className='contentBox' style={{marginLeft: '0px'}}>
               <PsalmData chapterNum={this.state.chapterNum} />
             </Row>
-            <Row>
-              <p>Grouping words takes out passive verbs, conjuntions and articles, and it combines like terms.</p>
+
+            {/* Footnotes */}
+            <Row className='footnote'>
+              <p>The word count only shows words with a frequency of 2 or more.</p>
+              <p>Grouping words takes out passive verbs, conjuntions, and articles, and it combines like terms.</p>
+            </Row>
+            <Row className='buttonRow'>
+              {/* Using the reactStrap Button tag links to the url so it changes and giving it an onClick func forces a refreshed state so component completely rerenders. The component does not unmount */}
+              <Button tag={Link} to={`/psalm/${previous}`} onClick={() => this.whichPsalm(previous)}>Previous Psalm</Button>
+              <Button tag={Link} to={`/psalm/${next}`} onClick={() => this.whichPsalm(next)}>Next Psalm</Button>
             </Row>
           </Col>
         </Row>
