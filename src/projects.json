@@ -1,5 +1,17 @@
 [
   {
+    "name":"psalms",
+    "title":"Psalms",
+    "image":"psalms.png",
+    "techs":["React", "Firebase", "ReactStrap", "Full Stack", "cPanel"],
+    "alt":"comparison app of the psalms from the Bible",
+    "body":"Dig into the 150 songs from the book of Psalms in the Bible. Compare topics and authors across all 150. Get detailed information on each Psalm, including frequently used words and phrases.",
+    "github":"https://github.com/KrisBierma/thebibleandstuff",
+    "site":"http://www.thebibleandstuff.com/psalms",
+    "newClass":"",
+    "inc":true
+  },
+  {
     "name":"plantos",
     "title":"Plantos",
     "image":"plantos.jpg",

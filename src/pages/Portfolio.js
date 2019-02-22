@@ -27,6 +27,18 @@ class App extends Component {
       btnClassname:'btn',
       menu:[
         {
+          id:'React',
+          imgClass:'myIcons2',
+          place:'/reactIcon2.png',
+          name:''
+        },
+        {
+          id:'cPanel',
+          imgClass:'myIcons2',
+          place:'/cpanel.png',
+          name:''
+        },
+        {
           id:'Node.js',
           imgClass:'myIcons2',
           place:'/nodeIcon.png',
@@ -48,12 +60,6 @@ class App extends Component {
           id:'Handlebars',
           imgClass:'myIcons4',
           place:'/hbsIcon2.png',
-          name:''
-        },
-        {
-          id:'React',
-          imgClass:'myIcons2',
-          place:'/reactIcon2.png',
           name:''
         },
         {

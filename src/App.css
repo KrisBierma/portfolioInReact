@@ -1,10 +1,4 @@
-.container-fluid{
-  margin:0;
-  padding:0;
-  max-width: 100%;
-}
-
-/* fonts */
+/* generic classes */
 p{
   font-size:18px;
   color:black;
@@ -41,6 +35,13 @@ h4{
   font-size: 30px;
   margin-top:30px;
   color:white;
+}
+
+/* content */
+.container-fluid{
+  margin:0;
+  padding:0;
+  max-width: 100%;
 }
 
 /* 'go to the top' button */
@@ -97,3 +98,5 @@ h4{
 .myIcons5{
   height:30px;
 }
+
+/* footer in separate file */
