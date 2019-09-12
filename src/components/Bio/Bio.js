@@ -18,6 +18,7 @@ const Bio = () => (
           </div>          
           , which taught me how to learn and implement languages basics quickly and where I honed front and backend skills. There was lots of web dev collaboration and I worked on projects independently and collaboratively. 
       </p>
+      <p className="bioWords">I'm currently working on a bachelor's in computer science to imporove my foundational knowledge.</p>
       <p className="bioWords">
         My first career was in teaching, so I
       </p>
