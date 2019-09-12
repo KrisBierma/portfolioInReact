@@ -3,7 +3,7 @@ import "./Footer.css";
 
 const Footer = () => (
   <div className="footer">
-    <p>Copyright 2018 Kris Acker Bierma</p>
+    <p>Copyright 2019 Kris Acker Bierma</p>
   </div>
 );
 
