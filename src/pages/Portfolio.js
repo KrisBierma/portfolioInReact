@@ -27,6 +27,11 @@ class App extends Component {
       btnClassname:'btn',
       menu:[
         {
+          id:'C++',
+          imgClass:'myIcons2',
+          place:'/cpp.png',
+          name:''
+        },        {
           id:'React',
           imgClass:'myIcons2',
           place:'/reactIcon2.png',
@@ -99,7 +104,7 @@ class App extends Component {
           name:'Full Stack'
         }
       ],
-      list:['jQuery', 'Bootstrap', 'Handlebars', 'React', 'Command-Line', 'Firebase', 'MySQL', 'Sequelize', 'Heroku', 'Full Stack'],
+      list:['C++', 'jQuery', 'Bootstrap', 'Handlebars', 'React', 'Command-Line', 'Firebase', 'MySQL', 'Sequelize', 'Heroku', 'Full Stack'],
       isOpen: false
     };
     this.showModal = this.showModal.bind(this);

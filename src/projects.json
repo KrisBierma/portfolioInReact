@@ -24,6 +24,17 @@
     "inc":true
   },
   {
+    "name":"treasureHunt",
+    "title":"Treasure Hunt",
+    "image":"treasureHunt.png",
+    "techs":["C++"],
+    "alt":"text based strategy game",
+    "body":"Your uncle's will says his greatest treasure is hidden somewhere on his vast estate. First one there gets it. Search for clues and items in this text-based strategy game. (This doesn't have a live site.)",
+    "github":"https://github.com/KrisBierma/textBasedStrategyGame",
+    "newClass":"",
+    "inc":true
+  },
+  {
     "name":"peanutsGame",
     "title":"The Peanuts Game",
     "image":"reactGame.png",
